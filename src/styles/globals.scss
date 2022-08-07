@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'type';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#__next {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  @apply flex flex-col;
+}
+
+a.link {
+  @apply flex text-brand-3 mt-8
+  after:content-['→'] after:ml-4
+  hover:text-brand-5 hover:after:ml-8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input {
+  @extend .-ft-1;
+  @apply flex border border-gray-500 rounded-lg px-6 py-4 w-full mb-2;
+}
+label {
+  @apply flex mt-6 mb-2;
+}
+
+button, .button {
+  @extend .ft-0;
+  @apply flex w-max px-8 py-4 mt-8
+  bg-brand-3 text-white
+  hover:bg-brand-2
+  after:content-['→'] after:ml-4 hover:after:ml-8;
+  &-secondary {
+    @extend .button;
+    @apply bg-transparent border border-brand-1 text-inherit hover:bg-transparent;
+  }
+}
+
+.text-block {
+  @apply xl:w-1/2;
+  & > h4 {
+    @apply mt-16 mb-8;
+  }
+  & ul {
+    @apply mb-4;
+  }
+  & li {
+    @apply before:content-['•'] before:mr-4 ml-4;
+  }
+}
+
+
+.video-frame {
+  height: 0;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  position: relative;
+}
+.video-frame iframe, .video-frame object, .video-frame embed {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
