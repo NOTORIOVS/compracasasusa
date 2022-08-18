@@ -1,115 +1,105 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useForm } from "react-hook-form";
+
+import { restrictNumber, emailRegExp } from '../utils/formValidators';
+
+import { info } from '../../info';
+import Link from 'next/link';
 
 export default function Form() {
-  const [lead, setLead] = useState({});
-  const [error, setError] = useState(false);
-
+  const [awaiting, setAwaiting] = useState(false);
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
 
-  function formChange(e) {
-    setLead({
-      ...lead,
-      [e.target.name]: e.target.value
-    })
-  }
+  const onSubmit = (data) => {
+    setAwaiting(true);
 
-  function restrictNumber(e) {
-    const digitPeriodRegExp = new RegExp('\\d|\,|\\.|\\$|\\(|\\)');
-    if(e.ctrlKey // (A)
-      || e.altKey // (A)
-      || typeof e.key !== 'string' // (B)
-      || e.key.length !== 1) { // (C)
-      return;
-    }
-    if(!digitPeriodRegExp.test(e.key)) {
-      e.preventDefault();
-    }
-  }
-
-  function validateEmail(email) {
-    const regex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    return regex.test(email)
-  }
-
-  function onSubmit(e) {
-    e.preventDefault();
-    if(lead.nombre && lead.telefono && validateEmail(lead.email) === true && lead.instagram) {
-      const payload = new FormData();
-
-      for (const key in lead) {
-        payload.append(key, lead[key])
-      }
-
-      payload.append('creacion', new Date().toString());
-
-      fetch('https://sheetdb.io/api/v1/9zdu6o6agdngu', {
-        method: 'POST',
-        body: payload
+    fetch('/api/submit-form', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        ...data,
+        date: new Date().toLocaleString('es-MX', {timeZone: 'America/Mexico_City'})
       })
-        .then((r) => {
-          console.log('GDB R', r);
-          fbq('track', 'Lead');}
-        )
-        .then(() => fetch('/api/sendMail', {
-          method: 'POST',
-          body: JSON.stringify(lead),
-          headers: {'Content-Type': 'application/json'}
-        })
-          .then((r) => {
-            console.log('MAIL R', r);
+    }).then(() => fbq('track', 'Lead'))
 
-            router.push('/thankyou');
-
-            const a = document.createElement('a');
-            a.href = 'https://www.talaveramodels.com/agendar-cita';
-            a.target = '_blank';
-            a.click();
-          })
-          .catch((error) => console.log('MAIL E', error))
-        )
-        .catch(error => console.log('GDB E', error))
-
-    } else {
-      setError(true)
-    }
+    fetch('/api/sendMail', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    }).then(() => {
+        setAwaiting(false);
+        window.open(`//wa.me/${info.whatsapp}?text=Hola mi nombre es ${data.nombre}, estoy solicitando un crédito empresarial por $${data.monto} mxn`);
+        router.push('/thankyou');
+      });
   }
+
+  const renderError = (error) => <span className='smallest text-red-500'>{error?.message}</span>
 
   return (
-    <form className="mt-12">
+    <form className="mt-12" onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="fullName">Nombre</label>
       <input
+        {...register('nombre', {
+          required: 'Compártenos tu nombre',
+        })}
         type="text"
-        name="nombre"
         placeholder="Juan López"
-        onBlur={(e) => formChange(e)}
       />
+      {renderError(errors.nombre)}
       <label htmlFor="phone">Teléfono</label>
       <input
-        type="text"
-        name="telefono"
+        {...register('telefono', {
+          required: "Por favor ingresa un teléfono",
+        })}
         placeholder="(477) 123 1234"
-        onKeyPress={(e) => restrictNumber(e)}
-        onBlur={(e) => formChange(e)}
+        onKeyPress={restrictNumber}
       />
+      {renderError(errors.telefono)}
       <label htmlFor="email">Email</label>
       <input
-        type="text"
-        name="email"
+        {...register('email', {
+          required: 'Por favor compártenos un correo electrónico',
+          pattern: {
+            value: emailRegExp,
+            message: "Revisa tu correo",
+          },
+        })}
         placeholder="mail@mail.com"
-        onBlur={(e) => formChange(e)}
       />
-      <label htmlFor="instagram">Instagram</label>
+      {renderError(errors.email)}
+      <label htmlFor="instalaciones">Instalaciones</label>
       <input
-        type="text"
-        name="instagram"
-        placeholder="@talaveramodels"
-        onBlur={(e) => formChange(e)}
+        {...register('instalaciones', {
+          required: '¿En qué ciudad se encuentra tu negocio?'
+        })}
+        placeholder="Querétaro"
       />
-      {error === true && (
-       <div className="smallest text-red-500">Por favor verifica tus datos</div>
-      )}
-      <button className="!bg-brand-2 !w-full" onClick={(e) => onSubmit(e)}>Agendar cita</button>
+      {renderError(errors.ciudad)}
+      <button
+        className={`button ${awaiting ? '!bg-gray-300' : ''}`}
+        type='submit'
+        disabled={awaiting}
+      >
+        {!awaiting ? 'Contáctanos' : 'Enviando...'}
+      </button>
+      <p className="mt-8 mini">
+        {'Al dar clic aceptas nuestros '}
+        <Link href="/terminos-condiciones" passhref><a target="_blank" className="mini text-faster-4">Términos y condiciones</a></Link>
+        {'. Conoce nuestro '}
+        <Link href={info.privacyNotice ?? ''} passhref><a target="_blank" className="mini text-faster-4">Aviso de privacidad</a></Link>
+        {'.'}
+      </p>
     </form>
   )
 }
