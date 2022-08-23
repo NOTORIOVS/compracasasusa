@@ -1,4 +1,4 @@
-import {google } from 'googleapis';
+import { google } from 'googleapis';
 
 export default function SubmitForm(req, res) {
   const {method, body} = req;
@@ -34,6 +34,6 @@ export default function SubmitForm(req, res) {
   })
     .then((r) => res.status(200).json({ data: r.data }))
     .catch((err) => {
-      res.status(500).send({err});
+      res.status(500).send({message: 'Something went wrong', err});
     })
 }
