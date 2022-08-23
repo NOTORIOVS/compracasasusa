@@ -34,7 +34,6 @@ export default function SubmitForm(req, res) {
   })
     .then((r) => res.status(200).json({ data: r.data }))
     .catch((err) => {
-      console.log(err);
-      res.status(500).send({message: 'Something went wrong'})
+      res.status(500).send({err});
     })
 }
