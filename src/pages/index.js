@@ -199,7 +199,7 @@ export default function Home() {
               Llámanos
             </a>
             <a
-              href='//wa.me/+524411188379'
+              href={`//wa.me/${info.whatsapp}`}
               onClick={() => fbq('track', 'Contact')}
               target='_blank'
               className='button !bg-brand-5 !w-full' rel="noreferrer"
