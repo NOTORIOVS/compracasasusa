@@ -10,7 +10,7 @@ export default function SendEmail(lead) {
       ${Object.keys(lead).map((key) => `<div>${key}: ${lead[key]}</div>`)}
       <br/>
       ${lead.telefono &&
-        <a href={`https://wa.me/+52${lead.telefono.replace(/\+52|[()\s-]/g, '') ?? ''}`}>Enviar whatsapp</a>
+        `<a href="https://wa.me/+52${lead.telefono.replace(/\+52|[()\s-]/g, '') ?? ''}">Enviar whatsapp</a>`
       }
 `
 
