@@ -1,6 +1,6 @@
 import { google } from 'googleapis';
 
-export default function SubmitForm(req, res) {
+export default function SaveGsheet(req, res) {
   const {method, body} = req;
 
   if (method !== 'POST') {

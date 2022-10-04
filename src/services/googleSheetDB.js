@@ -1,5 +1,5 @@
 export default function SaveOnGSheet(data) {
-  return fetch('/api/submit-form', {
+  return fetch('/api/save-gsheet', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
