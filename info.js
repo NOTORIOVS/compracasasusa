@@ -21,5 +21,6 @@ export const info = {
     cp: '44100',
     city: 'Guadalajara',
     state: 'Jalisco'
-  }
+  },
+  privacyNotice: '/',
 }

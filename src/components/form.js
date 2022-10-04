@@ -1,46 +1,33 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
-
-import { restrictNumber, emailRegExp } from '../utils/formValidators';
+import Link from 'next/link';
 
 import { info } from '../../info';
-import Link from 'next/link';
+import { restrictNumber, emailRegExp } from '../utils/formValidators';
+
+import fbEvent from '../services/fbEvents';
+import SaveOnGSheet from '../services/googleSheetDB';
 
 export default function Form() {
   const [awaiting, setAwaiting] = useState(false);
-  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm();
+  } = useForm({
+    defaultValues: { nombre: 'Fer', email: 'fernando@notoriovs.com', phone: '1234567890' }
+  });
 
   const onSubmit = (data) => {
-    setAwaiting(true);
+    setAwaiting(true)
 
-    fetch('/api/submit-form', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        ...data,
-        date: new Date().toLocaleString('es-MX', {timeZone: 'America/Mexico_City'})
-      })
-    }).then(() => fbq('track', 'Lead'))
-
-    fetch('/api/sendMail', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    }).then(() => {
+    SaveOnGSheet(data)
+      .then(fbEvent('Lead', data))
+      // .then(SendMail(data))
+      .then(() => {
         setAwaiting(false);
-        window.open(`//wa.me/${info.whatsapp}?text=Hola mi nombre es ${data.nombre}, estoy solicitando un crédito empresarial por $${data.monto} mxn`);
-        router.push('/thankyou');
+        // window.open(`//wa.me/${info.whatsapp}?text=Si jaló`);
+        // router.push('/thankyou');
       });
   }
 
@@ -59,7 +46,7 @@ export default function Form() {
       {renderError(errors.nombre)}
       <label htmlFor="phone">Teléfono</label>
       <input
-        {...register('telefono', {
+        {...register('phone', {
           required: "Por favor ingresa un teléfono",
         })}
         placeholder="(477) 123 1234"
@@ -78,14 +65,6 @@ export default function Form() {
         placeholder="mail@mail.com"
       />
       {renderError(errors.email)}
-      <label htmlFor="instalaciones">Instalaciones</label>
-      <input
-        {...register('instalaciones', {
-          required: '¿En qué ciudad se encuentra tu negocio?'
-        })}
-        placeholder="Querétaro"
-      />
-      {renderError(errors.ciudad)}
       <button
         className={`button ${awaiting ? '!bg-gray-300' : ''}`}
         type='submit'
