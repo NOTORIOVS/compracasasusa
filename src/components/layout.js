@@ -1,17 +1,16 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import { info } from '../../info';
-import { useEffect, useState } from 'react';
+import Header from './header';
 
 export default function Layout({children}) {
-  const [whiteHeader, setWhiteHeader] = useState(false)
-
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      const position = window.pageYOffset;
-      setWhiteHeader(position >= 720)
-    })
-  }, [])
+  const sub = {
+    bgColor: 'bg-gray-100',
+      logo: {
+        href: '/',
+        content: <h1 className="ft-2 !mb-0">Subheader</h1>,
+      },
+      children: <p className="!mb-0 -ft-1">Subheader Right Side</p>
+  }
 
   return (
     <>
@@ -19,24 +18,11 @@ export default function Layout({children}) {
         <title>{info.companyName}</title>
         <meta name='description' content={info.description} />
       </Head>
-      <header className={`fixed top-0 left-0 right-0 z-40 ${whiteHeader && 'bg-white/80 shadow-md'}`}>
-        <div className='container flex justify-between items-center'>
-          <Link href='/' passhref>
-            <a className={`${whiteHeader ? 'w-24 py-4' : 'w-40 py-8'}`}>
-              <img src='/images/logo.svg' alt={info.companyName} />
-            </a>
-          </Link>
-          <a
-            href={`//wa.me/${info.whatsapp}`}
-            target='_blank'
-            className='hidden text-brand-5 !font-medium md:flex after:content-["→"] after:ml-4'
-            rel="noreferrer"
-            onClick={() => fbq('track', 'Contact')}
-          >
-            Envíanos un Whatsapp
-          </a>
-        </div>
-      </header>
+
+      <Header
+        sub={sub}
+      />
+
 
       <div className='flex md:hidden fixed bottom-0 right-0 left-0 p-8 z-40 bg-brand-3'>
         <a
