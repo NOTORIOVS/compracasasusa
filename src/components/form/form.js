@@ -2,20 +2,24 @@ import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import Link from 'next/link';
 
-import { info } from '../../info';
-import { restrictNumber, emailRegExp } from '../utils/formValidators';
+import { info } from '../../../info';
+import { emailRegExp } from '../../utils/formValidators';
 
-import fbEvent from '../services/fbEvents';
-import SaveOnGSheet from '../services/googleSheetDB';
+import fbEvent from '../../services/fbEvents';
+import SaveOnGSheet from '../../services/googleSheetDB';
+import SendMail from '../../services/mail';
+import { useRouter } from 'next/router';
+import Input from './input';
 
 export default function Form() {
   const [awaiting, setAwaiting] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm({
-    defaultValues: { nombre: 'Fer', email: 'fernando@notoriovs.com', phone: '1234567890' }
+    defaultValues: { fullName: 'Fer', email: 'fernando@notoriovs.com', phone: '1234567890' }
   });
 
   const onSubmit = (data) => {
@@ -23,38 +27,40 @@ export default function Form() {
 
     SaveOnGSheet(data)
       .then(fbEvent('Lead', data))
-      // .then(SendMail(data))
+      .then(SendMail(data))
       .then(() => {
         setAwaiting(false);
         // window.open(`//wa.me/${info.whatsapp}?text=Si jaló`);
-        // router.push('/thankyou');
+        router.push('/thankyou');
       });
   }
 
-  const renderError = (error) => <span className='smallest text-red-500'>{error?.message}</span>
-
   return (
     <form className="mt-12" onSubmit={handleSubmit(onSubmit)}>
-      <label htmlFor="fullName">Nombre</label>
-      <input
-        {...register('nombre', {
-          required: 'Compártenos tu nombre',
-        })}
-        type="text"
-        placeholder="Juan López"
+      <Input
+        label="Nombre"
+        error={errors.fullName}
+        {...register(
+          'fullName',
+          {
+            required: 'Compártenos tu nombre',
+          }
+        )}
       />
-      {renderError(errors.nombre)}
-      <label htmlFor="phone">Teléfono</label>
-      <input
-        {...register('phone', {
-          required: "Por favor ingresa un teléfono",
-        })}
+      <Input
+        label="Teléfono"
         placeholder="(477) 123 1234"
-        onKeyPress={restrictNumber}
+        error={errors.phone}
+        onlyNumbers
+        {...register(
+          'phone',
+          {
+            required: "Por favor ingresa un teléfono",
+          }
+        )}
       />
-      {renderError(errors.telefono)}
-      <label htmlFor="email">Email</label>
-      <input
+      <Input
+        label="Email"
         {...register('email', {
           required: 'Por favor compártenos un correo electrónico',
           pattern: {
@@ -62,9 +68,8 @@ export default function Form() {
             message: "Revisa tu correo",
           },
         })}
-        placeholder="mail@mail.com"
       />
-      {renderError(errors.email)}
+
       <button
         className={`button ${awaiting ? '!bg-gray-300' : ''}`}
         type='submit'

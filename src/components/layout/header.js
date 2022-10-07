@@ -1,7 +1,14 @@
 import Link from 'next/link';
-import { info } from '../../info';
+import { info } from '../../../info';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Header({sub}) {
+  const [mainHeaderHeight, setMainHeaderHeight] = useState();
+  const mainHeader = useRef();
+
+  useEffect(() => {
+    setMainHeaderHeight(mainHeader.current.offsetHeight / 10);
+  }, [mainHeader])
 
   const subHeader = ({ bgColor, logo, children }) => (
     <div className={`${bgColor} w-full shadow-md`}>
@@ -16,8 +23,15 @@ export default function Header({sub}) {
 
   return (
     <>
-      <header className={`sticky ${ sub ? '-top-[7.1rem]' : 'top-0'} left-0 right-0 bg-white`}>
-        <div className="relative top-0 shadow-md z-[1]">
+      <header
+        className={`sticky left-0 right-0 bg-white z-[99] hover:top-0
+          ${sub ? `-top-[${mainHeaderHeight}rem]` : 'top-0'}
+        `}
+      >
+        <div
+          ref={mainHeader}
+          className="relative top-0 shadow-md z-[1]"
+        >
           <div className='container flex justify-between items-center'>
             <Link href='/' passhref>
               <a className="w-24 py-4">

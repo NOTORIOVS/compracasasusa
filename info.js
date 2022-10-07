@@ -12,7 +12,7 @@ export const info = {
   phoneNumber: '+523310804567',
   whatsapp: '+523310804567',
   social: {
-    facebook: 'notoriovs_studio',
+    facebook: 'notoriovstudio',
     instagram: 'notoriovs_studio',
   },
   address: {

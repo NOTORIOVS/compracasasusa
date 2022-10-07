@@ -4,8 +4,8 @@ export default function ThankYou() {
   return (
     <section className="h-full my-auto">
       <div className="container flex flex-col items-center">
-        <h1>¡Ya estás más cerca de cumplir tu sueño!</h1>
-        <p className="body_lg">Una persona de neustro equipo te contactará lo antes posible</p>
+        <h1>¡This is a thank you page!</h1>
+        <p className="body_lg">Una persona de nuestro equipo te contactará lo antes posible</p>
         <p className="mt-12">Te invitamos a seguirnos en nuestras redes sociales</p>
         <div className="flex justify-between space-x-20">
           <a href={`//facebook.com/${info.social.facebook}`} target='_blank' className="link" rel="noreferrer">
