@@ -30,7 +30,7 @@ export default function Form() {
       .then(SendMail(data))
       .then(() => {
         setAwaiting(false);
-        // window.open(`//wa.me/${info.whatsapp}?text=Si jaló`);
+        window.open(`//wa.me/${info.whatsapp.value}?text=${info.whatsapp.message}`);
         router.push('/thankyou');
       });
   }

@@ -15,6 +15,10 @@ export default function fbEvent(
     }
   })
 
+  if (!process.env.FB_CAPI_TOKEN) {
+    return fbq('track', eventName, {}, {eventID});
+  }
+
   return fetch(`/api/fb-event`, {
     method: 'POST',
     body: payload,
@@ -23,9 +27,5 @@ export default function fbEvent(
     },
   })
     .then((res) => res.json())
-    .then((r) => {
-      console.log(r);
-      fbq('track', eventName, {}, {eventID});
-    })
     .catch(err => console.log(err))
 }

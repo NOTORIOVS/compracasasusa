@@ -10,7 +10,10 @@ export const info = {
     subject: 'Nuevo prospecto Notoriovs'
   },
   phoneNumber: '+523310804567',
-  whatsapp: '+523310804567',
+  whatsapp: {
+    value: '+523310804567',
+    message: 'Si jaló'
+  },
   social: {
     facebook: 'notoriovstudio',
     instagram: 'notoriovs_studio',
