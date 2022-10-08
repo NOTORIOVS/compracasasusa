@@ -79,9 +79,9 @@ export default function Form() {
       </button>
       <p className="mt-8 mini">
         {'Al dar clic aceptas nuestros '}
-        <Link href="/terminos-condiciones" passhref><a target="_blank" className="mini text-faster-4">Términos y condiciones</a></Link>
+        <Link href={info.termsConditions ?? ''} passhref><a target="_blank" className="mini">Términos y condiciones</a></Link>
         {'. Conoce nuestro '}
-        <Link href={info.privacyNotice ?? ''} passhref><a target="_blank" className="mini text-faster-4">Aviso de privacidad</a></Link>
+        <Link href={info.privacyNotice ?? ''} passhref><a target="_blank" className="mini">Aviso de privacidad</a></Link>
         {'.'}
       </p>
     </form>
