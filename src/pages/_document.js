@@ -10,6 +10,7 @@ export default function Document() {
         <TrackingAnalytics />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script type='text/javascript' src='/typetura.js'/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
       </Head>
       <body>
         <Main />

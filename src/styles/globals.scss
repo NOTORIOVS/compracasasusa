@@ -63,6 +63,12 @@ button, .button {
   }
 }
 
+.row {
+  @apply w-full flex flex-wrap justify-between items-stretch my-16;
+}
+.column {
+  @apply flex-grow min-w-[calc(100%/4)] lg:min-w-[calc(100%/12)];
+}
 
 .video-frame {
   height: 0;
@@ -78,4 +84,29 @@ button, .button {
   position: absolute;
   top: 0;
   width: 100%;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: inherit;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
