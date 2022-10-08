@@ -1,6 +1,28 @@
 import Link from 'next/link';
 import { info } from '../../../info';
 import { useEffect, useRef, useState } from 'react';
+import { menu } from '../navigation/menu';
+
+const nav = [
+  {label: 'Home', href: '/'},
+  {label: 'About', href: '/'},
+  {
+    label: 'Has Children',
+    children: [
+      {label: 'Child 1', href: '/test'},
+      {label: 'Child 2', href: '/'},
+      {label: 'Child 3', href: '/'},
+    ],
+  },
+  {
+    label: 'More Children',
+    children: [
+      {label: 'Child 1', href: '/'},
+      {label: 'Child 2', href: '/'},
+      {label: 'Child 3', href: '/'},
+    ],
+  },
+];
 
 export default function Header({sub}) {
   const [mainHeaderHeight, setMainHeaderHeight] = useState();
@@ -16,7 +38,7 @@ export default function Header({sub}) {
         <Link href={logo.href} passhref>
           <a>{logo.content}</a>
         </Link>
-        {children}
+        {menu({nav: children})}
       </div>
     </div>
   )
@@ -38,7 +60,9 @@ export default function Header({sub}) {
                 <img src='/images/logo.svg' alt={info.companyName} />
               </a>
             </Link>
-            <div className="ft-0">Main Header Right Side</div>
+            <div className="ft-0">
+              {menu({nav, isMain: true})}
+            </div>
           </div>
         </div>
         {sub && subHeader(sub)}
