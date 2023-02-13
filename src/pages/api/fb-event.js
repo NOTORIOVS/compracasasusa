@@ -1,3 +1,5 @@
+import { getCookie } from 'cookies-next';
+
 export default function FbEvent(req, res) {
   const {
     method,
@@ -23,14 +25,15 @@ export default function FbEvent(req, res) {
         action_source: 'website',
         event_source_url: referer,
         user_data: {
-          // em: [hash(user.em)],
-          // ph: [hash(user.ph)],
-          client_ip_address: "127.0.0.1",
+          fbc: getCookie('_fbc', {req, res}),
+          fbp: getCookie('_fbp', {req, res}),
+          em: [hash(user.em)],
+          ph: [hash(user.ph)],
           client_user_agent: req.headers['user-agent'],
         },
       },
     ],
-    test_event_code: 'TEST27044',
+    test_event_code: 'TEST17584',
   }
 
   return fetch(url, {
@@ -39,6 +42,8 @@ export default function FbEvent(req, res) {
     body: JSON.stringify(payload),
   })
     .then(response => response.json())
-    .then(result => res.status(200).json(result))
+    .then(result => {
+      res.status(200).json(result);
+    })
     .catch(error => console.log('error', error));
 }

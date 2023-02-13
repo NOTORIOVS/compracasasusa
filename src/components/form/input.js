@@ -1,7 +1,6 @@
 import { restrictNumber } from '../../utils/formValidators';
 
 export default function Input({label, error, placeholder, type, onlyNumbers, ...props}) {
-  console.log('INPUT PROPS', props);
   const renderError = (error) => <span className='smallest text-red-500'>{error?.message}</span>
 
   let inputProps = {

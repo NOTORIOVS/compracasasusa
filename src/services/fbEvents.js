@@ -1,3 +1,5 @@
+import { getCookie } from 'cookies-next';
+
 export default function fbEvent(
   eventName,
   userData = {
@@ -15,9 +17,7 @@ export default function fbEvent(
     }
   })
 
-  if (!process.env.FB_CAPI_TOKEN) {
-    return fbq('track', eventName, {}, {eventID});
-  }
+  fbq('track', eventName, {}, {fbc: getCookie('_fbc')});
 
   return fetch(`/api/fb-event`, {
     method: 'POST',
