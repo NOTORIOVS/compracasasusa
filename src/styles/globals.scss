@@ -6,6 +6,7 @@
 
 html,
 body {
+ 
   padding: 0;
   margin: 0;
 }
@@ -18,6 +19,7 @@ body {
 
 main {
   @apply flex flex-col;
+  @apply text-neutral-600 ;
 }
 
 a.link {
@@ -30,6 +32,14 @@ a.link {
   box-sizing: border-box;
 }
 
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
 input {
   @extend .-ft-1;
   @apply flex border border-gray-500 rounded-lg px-6 py-4 w-full mb-2;
@@ -38,17 +48,17 @@ label {
   @apply flex mt-6 mb-2;
 }
 
-button, .button {
-  @extend .ft-0;
-  @apply flex w-max px-8 py-4 mt-8
-  bg-brand-3 text-white
-  hover:bg-brand-2
-  after:content-['→'] after:ml-4 hover:after:ml-8;
-  &-secondary {
-    @extend .button;
-    @apply bg-transparent border border-brand-1 text-inherit hover:bg-transparent;
-  }
-}
+// button, .button {
+//   @extend .ft-0;
+//   @apply flex w-max px-8 py-4 mt-8
+//   bg-brand-3 text-white
+//   hover:bg-brand-2
+//   after:content-['→'] after:ml-4 hover:after:ml-8;
+//   &-secondary {
+//     @extend .button;
+//     @apply bg-transparent border border-brand-1 text-inherit hover:bg-transparent;
+//   }
+// }
 
 .text-block {
   @apply xl:w-1/2;
@@ -109,4 +119,30 @@ button, .button {
 
   /* Support for IE. */
   font-feature-settings: 'liga';
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

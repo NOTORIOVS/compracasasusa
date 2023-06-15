@@ -1,72 +1,48 @@
-import Link from 'next/link';
-import { info } from '../../../info';
-import { useEffect, useRef, useState } from 'react';
-import { menu } from '../navigation/menu';
+import Link from "next/link";
+import { info } from "../../../info";
+import { useEffect, useRef, useState } from "react";
+import WhatsButton from "../ui/whatsButton";
+import Image from "next/image";
+import logo from "../../../public/assets/logo.png";
+// import igLogo from "../../../public/assets/IG-Logo.svg";
 
-const nav = [
-  {label: 'Home', href: '/'},
-  {label: 'About', href: '/'},
-  {
-    label: 'Has Children',
-    children: [
-      {label: 'Child 1', href: '/test'},
-      {label: 'Child 2', href: '/'},
-      {label: 'Child 3', href: '/'},
-    ],
-  },
-  {
-    label: 'More Children',
-    children: [
-      {label: 'Child 1', href: '/'},
-      {label: 'Child 2', href: '/'},
-      {label: 'Child 3', href: '/'},
-    ],
-  },
-];
-
-export default function Header({sub}) {
+export default function Header() {
   const [mainHeaderHeight, setMainHeaderHeight] = useState();
   const mainHeader = useRef();
 
   useEffect(() => {
     setMainHeaderHeight(mainHeader.current.offsetHeight / 10);
-  }, [mainHeader])
-
-  const subHeader = ({ bgColor, logo, children }) => (
-    <div className={`${bgColor} w-full shadow-md`}>
-      <div className="container flex justify-between items-center py-2">
-        <Link href={logo.href} passhref>
-          <a>{logo.content}</a>
-        </Link>
-        {menu({nav: children})}
-      </div>
-    </div>
-  )
+  }, [mainHeader]);
 
   return (
     <>
       <header
-        className={`sticky left-0 right-0 bg-white z-[99] hover:top-0
-          ${sub ? `-top-[${mainHeaderHeight}rem]` : 'top-0'}
+        className={` flex items-center justify-center bg-white z-[99] hover:top-0
+
         `}
       >
         <div
           ref={mainHeader}
-          className="relative top-0 shadow-md z-[1]"
+          className="fixed bg-white backdrop-blur-lg border-b w-screen shadow-sm top-0 h-[8rem] items-center flex z-[1]"
         >
-          <div className='container flex justify-between items-center'>
-            <Link href='/' passhref>
-              <a className="w-24 py-4">
-                <img src='/images/logo.svg' alt={info.companyName} />
+          <div className="container flex justify-between items-center">
+            <Link href="/" passhref>
+              <a className="w-40 py-4">
+                <Image src={logo} fill={true} alt={info.companyName} />
               </a>
             </Link>
-            <div className="ft-0">
-              {menu({nav, isMain: true})}
+            <div className="flex items-center space-x-8 ft-0">
+              <a
+                href={`//wa.me/${info.whatsapp.value}?text=${info.whatsapp.message}`}
+                target="_blank"
+                className="flex"
+              >
+                <WhatsButton>Mándame un WhatsApp</WhatsButton>
+              </a>
             </div>
           </div>
         </div>
-        {sub && subHeader(sub)}
       </header>
     </>
-  )
+  );
 }

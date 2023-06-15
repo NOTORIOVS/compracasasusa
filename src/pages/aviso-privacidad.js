@@ -1,4 +1,4 @@
-import { info } from '../../info';
+import { info } from "../../info";
 
 export default function AvisoPrivacidad() {
   return (
@@ -7,11 +7,17 @@ export default function AvisoPrivacidad() {
       <p>{`En cumplimiento a lo dispuesto por la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, publicada en el Diario Oficial de la Federación el día 5 de Julio de 2010, ${info.companyName} hace del conocimiento del público en general lo siguiente:`}</p>
 
       <h4>{`La Identidad y Domicilio del Responsable`}</h4>
-      <p>{`${info.legalName} (`}<b>{`${info.companyName}`}</b>),
-        <br/>{`Con domicilio en ${info.address.address}`}
-        <br/>{`Col. ${info.address.col}`}
-        <br/>{`C.P. ${info.address.cp}, ${info.address.city}, ${info.address.state}`}
-        <br/>{`Tel. ${info.phoneNumber}`}
+      <p>
+        {`${info.legalName} (`}
+        <b>{`${info.companyName}`}</b>),
+        <br />
+        {`Con domicilio en ${info.address.address}`}
+        <br />
+        {`Col. ${info.address.col}`}
+        <br />
+        {`C.P. ${info.address.cp}, ${info.address.city}, ${info.address.state}`}
+        <br />
+        {`Tel. ${info.phoneNumber}`}
       </p>
 
       <h4>{`Datos Personales que se tratarán`}</h4>

@@ -1,29 +1,28 @@
 export const info = {
-  legalName: 'Bar Code Services S.A de C.V.',
-  companyName: 'Notoriovs Studio',
-  description: 'Brands Metamorphosis',
+  legalName: "Bar Code Services S.A de C.V.",
+  companyName: "CompraCasasUSA",
+  description: "Brands Metamorphosis",
   email: {
-    sender: 'info@notoriovs.com',
-    recipients: [
-      'info@notoriovs.com',
-    ],
-    subject: 'Nuevo prospecto Notoriovs'
+    sender: "info@notoriovs.com",
+    recipients: ["info@notoriovs.com"],
+    subject: "Nuevo prospecto Notoriovs",
   },
-  phoneNumber: '+523310804567',
+  phoneNumber: "+523310804567",
   whatsapp: {
-    value: '+523310804567',
-    message: 'Si jaló'
+    value: "+523310804567",
+    message: "Si jaló",
   },
   social: {
-    facebook: 'notoriovstudio',
-    instagram: 'notoriovs_studio',
+    facebook: "notoriovstudio",
+    instagram: "notoriovs_studio",
   },
   address: {
-    address: 'Montreal 1071',
-    col: 'Providencia',
-    cp: '44100',
-    city: 'Guadalajara',
-    state: 'Jalisco'
+    address: "Montreal 1071",
+    col: "Providencia",
+    cp: "44100",
+    city: "Guadalajara",
+    state: "Jalisco",
   },
-  privacyNotice: '/',
-}
+  privacyNotice: "/aviso-privacidad",
+  termsConditions: "/aviso-privacidad",
+};

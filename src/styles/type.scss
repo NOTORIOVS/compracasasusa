@@ -49,27 +49,27 @@ $fluid_steps: (
   font-display: swap;
 }
 
-h1 { @extend .ft-6 }
-h2 { @extend .ft-5 }
+h1 { @extend .ft-10 }
+h2 { @extend .ft-7 }
 h3 { @extend .ft-4 }
 h4 { @extend .ft-3 }
 h5 { @extend .ft-2 }
 h6 { @extend .ft-1 }
-p { @extend .ft-0 }
+p { @extend .ft-2 }
 li { @extend .-ft-1 }
 label { @extend .-ft-3 }
 b { @apply font-bold }
 
 h1, h2, h3, h4, h5, h6 {
   margin-block-start: 0;
-  margin-block-end: 1rem;
-  @apply font-extrabold italic uppercase;
+  // margin-block-end: 1rem;
+
 }
 
 p {
-  @extend .ft-0;
+  @extend .ft-1;
   margin-block-start: 0;
-  margin-block-end: 1rem;
+  // margin-block-end: 1rem;
 }
 
 a {

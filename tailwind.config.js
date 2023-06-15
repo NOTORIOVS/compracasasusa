@@ -8,25 +8,25 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          1: '#ffbe00',
-          2: '#C40090',
-          3: '#25519C',
-          4: '#C01010',
-          5: '#37AC1A',
-        }
+          1: "#191D3C",
+          2: "#272D5C",
+          3: "#1B3266",
+          4: "#C01010",
+          5: "#37AC1A",
+        },
       },
       container: {
         center: true,
-        padding: '2rem',
+        padding: "2rem",
       },
       screens: {
-        'sm': '640px',
-        'md': '768px',
-        'lg': '1024px',
-        'xl': '1280px',
-        '2xl': '1280px',
-      }
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1280px",
+      },
     },
   },
   plugins: [],
-}
+};
