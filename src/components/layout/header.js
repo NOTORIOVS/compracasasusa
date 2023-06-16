@@ -37,7 +37,7 @@ export default function Header() {
                 target="_blank"
                 className="flex"
               >
-                <WhatsButton>Mándame un WhatsApp</WhatsButton>
+                <WhatsButton>Mándanos un WhatsApp</WhatsButton>
               </a>
             </div>
           </div>
