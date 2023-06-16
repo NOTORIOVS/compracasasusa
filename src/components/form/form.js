@@ -1,15 +1,13 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import Link from "next/link";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Link from 'next/link';
 
-import { info } from "../../../info";
-import { emailRegExp } from "../../utils/formValidators";
+import { info } from '../../../info';
+import { emailRegExp } from '../../utils/formValidators';
 
-import fbEvent from "../../services/fbEvents";
-import SaveOnGSheet from "../../services/googleSheetDB";
-import SendMail from "../../services/mail";
-import { useRouter } from "next/router";
-import VerMasButton from "../ui/verMasButton";
+import fbEvent from '../../services/fbEvents';
+import { useRouter } from 'next/router';
+import VerMasButton from '../ui/verMasButton';
 
 export default function Form() {
   const [awaiting, setAwaiting] = useState(false);
@@ -17,26 +15,26 @@ export default function Form() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: {errors},
   } = useForm();
 
   const onSubmit = (data) => {
     setAwaiting(true);
 
     return (
-      fetch("https://hook.us1.make.com/s3wodpb45yes7d9jfbra5u0bcjy5fgl8", {
-        method: "POST",
+      fetch('https://hook.us1.make.com/s3wodpb45yes7d9jfbra5u0bcjy5fgl8', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       })
         .then((result) => result)
-        .then(fbEvent("Lead", data))
+        .then((res) => res)
+        .then(fbEvent('Lead', data))
         .then(() => {
           setAwaiting(false);
-          // window.open(`//calendly.com/drtorresroa/30min`);
-          router.push("/thankyou");
+          router.push('/thankyou');
         })
     );
   };
@@ -50,8 +48,8 @@ export default function Form() {
       <label htmlFor="fullName">Nombre</label>
       <input
         placeholder="Nombre"
-        {...register("fullName", {
-          required: "Compártenos tu nombre",
+        {...register('fullName', {
+          required: 'Compártenos tu nombre',
         })}
       />
       {renderError(errors.fullName)}
@@ -59,8 +57,8 @@ export default function Form() {
       <input
         type="tel"
         placeholder="(477) 123 1234"
-        {...register("phone", {
-          required: "Por favor ingresa un teléfono",
+        {...register('phone', {
+          required: 'Por favor ingresa un teléfono',
         })}
       />
       {renderError(errors.phone)}
@@ -68,29 +66,29 @@ export default function Form() {
       <label htmlFor="email">Email</label>
       <input
         placeholder="mail@mail.com"
-        {...register("email", {
-          required: "Por favor compártenos un correo electrónico",
+        {...register('email', {
+          required: 'Por favor compártenos un correo electrónico',
           pattern: {
             value: emailRegExp,
-            message: "Revisa tu correo",
+            message: 'Revisa tu correo',
           },
         })}
       />
       {renderError(errors.email)}
       <div className="flex flex-col">
         {/* !!!Cita */}
-        <div htmlFor="cita">
+        <div>
           <label>Horario de cita</label>
           <select
             className="text-xl py-4 px-5 minimal border rounded-lg w-full border-neutral-500"
             name="appointment"
             id="cita-select"
-            {...register("appointment", {
-              required: "Por favor selecciona una opción",
+            {...register('appointment', {
+              required: 'Por favor selecciona una opción',
             })}
           >
             <option value="">Selecciona una opción</option>
-            <option value="a_cualquier_hora_">A cualquier hora </option>
+            <option value="a_cualquier_hora_">A cualquier hora</option>
             <option value="entre_9:00_am_y_11:00_am">
               Entre 9:00 am y 11:00 am
             </option>
@@ -108,8 +106,8 @@ export default function Form() {
             className="text-xl py-4 px-5 minimal border rounded-lg w-full border-neutral-500"
             name="budget"
             id="presupuesto-select"
-            {...register("budget", {
-              required: "Por favor compártenos cuanto es tu presupuesto.",
+            {...register('budget', {
+              required: 'Por favor compártenos cuanto es tu presupuesto.',
             })}
           >
             <option value="" disabled selected>
@@ -133,9 +131,9 @@ export default function Form() {
             className="text-xl py-4 px-5 border rounded-lg w-full border-neutral-500"
             name="investment"
             id="investment-select"
-            {...register("investment", {
+            {...register('investment', {
               required:
-                "Por favor compártenos el modo en el que quieres invertir.",
+                'Por favor compártenos el modo en el que quieres invertir.',
             })}
           >
             <option value="" disabled selected>
@@ -155,8 +153,8 @@ export default function Form() {
             className="text-xl py-4 px-5 border rounded-lg w-full border-neutral-500"
             name="immediacy"
             id="immediacy-select"
-            {...register("immediacy", {
-              required: "Por favor compártenos la inmediatez",
+            {...register('immediacy', {
+              required: 'Por favor compártenos la inmediatez',
             })}
           >
             <option value="" disabled selected>
@@ -186,31 +184,31 @@ export default function Form() {
         <VerMasButton>
           <div className="text-3xl">
             <button
-              className={`button ${awaiting ? "!bg-gray-300" : ""}`}
+              className={`button ${awaiting ? '!bg-gray-300' : ''}`}
               type="submit"
               disabled={awaiting}
             >
-              {!awaiting ? "Enviar y contactar asesor" : "Enviando..."}
+              {!awaiting ? 'Enviar y contactar asesor' : 'Enviando...'}
             </button>
           </div>
         </VerMasButton>
       </div>
       <div className="mt-40">
         <p className="mt-8 mini">
-          {"Al dar click aceptas nuestros "}
-          <Link href={info.termsConditions ?? ""} passhref>
+          {'Al dar click aceptas nuestros '}
+          <Link href={info.termsConditions ?? ''} passhref>
             <a target="_blank" className="mini font-semibold">
               Términos y condiciones.
             </a>
           </Link>
-          <br />
-          {"Conoce nuestro "}
-          <Link href={info.privacyNotice ?? ""} passhref>
+          <br/>
+          {'Conoce nuestro '}
+          <Link href={info.privacyNotice ?? ''} passhref>
             <a target="_blank" className="mini font-semibold">
               Aviso de privacidad
             </a>
           </Link>
-          {"."}
+          {'.'}
         </p>
       </div>
     </form>

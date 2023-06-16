@@ -33,7 +33,7 @@ export default function FbEvent(req, res) {
         },
       },
     ],
-    test_event_code: 'TEST17584',
+    test_event_code: 'TEST75158',
   }
 
   return fetch(url, {
