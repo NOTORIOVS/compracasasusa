@@ -1,9 +1,8 @@
 import Form from "../components/form/form";
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
-import { info } from "../../info";
 import Image from "next/image";
 import ActionButton from "../components/ui/actionButton";
 import ActionButton2 from "../components/ui/actionButton2";
@@ -18,10 +17,6 @@ import stars from "../../public/assets/04.jpg";
 import img3 from "../../public/assets/07.jpg";
 import img4 from "../../public/assets/08.jpg";
 import img5 from "../../public/assets/09.jpg";
-import br1 from "../../public/assets/10.jpg";
-import br2 from "../../public/assets/11.jpg";
-import br3 from "../../public/assets/12.jpg";
-import br4 from "../../public/assets/13.jpg";
 import t1 from "../../public/assets/14.jpg";
 import t2 from "../../public/assets/15.jpg";
 import t3 from "../../public/assets/16.jpg";
@@ -71,7 +66,7 @@ export default function Home() {
             <div
               className="bg-brand-1 h-32 md:flex flex-grow absolute left-0 right-0 hidden -z-1"
               style={{ top: "calc(50% - 4rem)" }}
-            ></div>
+            />
             <div className="flex flex-col mx-auto items-center justify-center z-10">
               <div className="bg-white mx-auto items-center justify-center md:w-9/12  p-20">
                 <div className="border p-14">
@@ -120,7 +115,7 @@ export default function Home() {
           <div className="flex flex-col w-screen items-center justify-center mx-auto mt-44">
             <div>
               <h3 className="text-center md:text-left font-semibold md:mt-0 mt-20">
-                Llevamos más de XX desarrollos que han generado
+                Llevamos más de 10 desarrollos que han generado
               </h3>
             </div>
             <div className="md:flex md:flex-row flex flex-col mx-auto max-w-5xl md:items-start font-semibold items-center justify-center flex-grow md:gap-40 gap-20 md:mt-16 mt-10">
@@ -244,7 +239,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="h-32 bg-red-600 w-screen absolute -z-10 mt-34"></div>
+            <div className="h-32 bg-red-600 w-screen absolute -z-10 mt-34"/>
             <div className="flex flex-col items-center justify-center mt-40">
               <ActionButton2>
                 Invierte fácil con nosotros, da click
@@ -287,7 +282,7 @@ export default function Home() {
                 Nuestra misión es ayudarte a obtener el máximo rendimiento de tu
                 inversión.
               </p>
-              <div className="p-10 md:text-left text-center"></div>
+              <div className="p-10 md:text-left text-center"/>
               <p>
                 Trabajamos con las constructoras más importantes de Estados
                 Unidos, con el propósito de que tengas la mayor calidad posible
