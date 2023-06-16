@@ -32,8 +32,7 @@ export default function Form() {
         body: JSON.stringify(data),
       })
         .then((result) => result)
-        // .then((res) => console.log(res))
-        // .then(fbEvent("Lead", data))
+        .then(fbEvent("Lead", data))
         .then(() => {
           setAwaiting(false);
           // window.open(`//calendly.com/drtorresroa/30min`);
