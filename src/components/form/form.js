@@ -20,6 +20,7 @@ export default function Form() {
 
   const onSubmit = (data) => {
     setAwaiting(true);
+    const dateAdded = new Date().toLocaleString('es-MX', {timeZone: 'America/Mexico_City'})
 
     return (
       fetch('https://hook.us1.make.com/s3wodpb45yes7d9jfbra5u0bcjy5fgl8', {
@@ -27,7 +28,7 @@ export default function Form() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({dateAdded, ...data}),
       })
         .then((result) => result)
         .then((res) => res)
