@@ -147,7 +147,7 @@ export default function Form() {
         </div>
         {renderError(errors.investment)}
 
-        {/* !!!Inversión*/}
+        {/* !!!Inmediatez*/}
         <div>
           <label>Inmediatez</label>
           <select
@@ -169,17 +169,6 @@ export default function Form() {
         </div>
         {/*  */}
       </div>
-
-      {/* {renderError(errors.monto)}
-      <label htmlFor="monto">Monto de inversión</label>
-      <input
-        type="number"
-        placeholder="*****"
-        {...register("monto", {
-          required: "Por favor compártenos cuanto planeas invertir.",
-        })}
-      />
-      {renderError(errors.monto)} */}
 
       <div className="mt-[40px] font-bold flex flex-col md:items-start items-center">
         <VerMasButton>
