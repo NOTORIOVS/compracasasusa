@@ -15,7 +15,7 @@ import woodlandsmap from '../../public/landing/cc-landing-woodlandsmap.jpg';
 import tex from '../../public/landing/cc-landing-tex.jpg';
 import cal from '../../public/landing/cc-landing-cal.jpg';
 import flo from '../../public/landing/cc-landing-flo.jpg';
-import testimonnials from '../../public/landing/cc-landing-testimonio.png';
+import testimonials from '../../public/landing/cc-landing-testimonio.png';
 import Blockbuster from '../components/blockbuster';
 import Link from 'next/link';
 import OptInForm from '../components/form/opt-in-form';
@@ -43,7 +43,7 @@ export default function Home() {
 
       <section className="reading-container my-16">
         <p className="ft-2">
-          Entre asesores de bienes raíces y expertos en materia corporativa y fiscal internacional,<br/><br/>
+          Entre asesores de bienes raíces y expertos en materia corporativa y fiscal internacional,<br/>
           buscamos facilitarte el poder crecer tu patrimonio hacia USA.<br/><br/>
           Así, tú puedes enfocarte en cosas que requieren tu atención: <br/>tus negocios,<br/> tu familia<br/> y otros
           temas que importan más que
@@ -52,7 +52,7 @@ export default function Home() {
         </p>
         <div className="flex flex-col justify-center items-center">
           <Link href="#contact"><a className="button mb-4">Contáctanos, da clic</a></Link>
-          <p className="-ft-2">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
+          <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
 
@@ -65,20 +65,20 @@ export default function Home() {
       <section className="reading-container my-16">
         <p className=" ft-2">Aquí te comparto mi top 3 de motivos:</p>
         <h3 className="sans font-bold ft-2">Los precios!</h3>
-        <p>en una comunidad de mejor nivel que un Solares o Valle Real, me
+        <p className="ft-2">En una comunidad de mejor nivel que un Solares o Valle Real, me
           encontré casas que costaban un tercio en comparación de mi amada Guadalajara.</p>
         <h3 className="sans font-bold ft-2">Los créditos...</h3>
         <p className=" ft-2">
-          no sabes como los bancos se llegan a pelear por ganarse
+          No sabes como los bancos se llegan a pelear por ganarse
           clientes mexicanos en lugar de americanos.</p>
         <h3 className="sans font-bold ft-2">Y por último: los rendimientos,</h3>
         <p className=" ft-2">
-          entre plusvalía y rentas, cortas o largas, me
+          Entre plusvalía y rentas, cortas o largas, me
           di cuenta que con esta inversión podía generar casi 10 veces más que invirtiendo en bonos, CETES o en el
           S&P-500</p>
         <div className="flex flex-col justify-center items-center">
           <Link href="#contact"><a className="button mb-4">3 grandes motivos ¿no? Da clic</a></Link>
-          <p className="-ft-2">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
+          <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
       {/* Quote */}
@@ -121,7 +121,7 @@ export default function Home() {
         </p>
         <div className="flex flex-col justify-center items-center">
           <Link href="#contact"><a className="button mb-4">¿Quieres saber más? Da clic</a></Link>
-          <p className="-ft-2">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
+          <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
       <section className="w-full bg-brand-6">
@@ -131,7 +131,7 @@ export default function Home() {
       </section>
       <Blockbuster
         overhead="Nuestro target"
-        title='Eres un inversionista, buscas un "second home" o mudarte a USA? Entonces si hacemos match.'
+        title='¿Eres un inversionista, buscas un "second home" o mudarte a USA? Entonces sí hacemos match.'
         image={cal}
       />
 
@@ -142,7 +142,7 @@ export default function Home() {
             inversión en una de las economías más estables del mundo y que
             te ayudemos a multiplicar tu dinero sin poner en riesgo el
             patrimonio de tu familia. Y sí, para eso estamos aquí, pero, y
-            si también pudieras
+            si también pudieras...
           </p>
           <div className="container grid grid-cols-1 md:grid-cols-3 md:gap-8 mt-20 mx-auto">
             <div className="relative gap-4 flex flex-col h-[32rem]">
@@ -167,14 +167,14 @@ export default function Home() {
         </div>
         <div className="flex flex-col justify-center items-center">
           <Link href="#contact"><a className="button mb-4">¡Motivos sobran! Da clic</a></Link>
-          <p className="-ft-2">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
+          <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
 
       <Blockbuster
         overhead="Testimonios"
         title="La voz de los inversionistas que han catapultado su capital."
-        image={testimonnials}
+        image={testimonials}
       />
 
       <section className="md:my-16">
@@ -182,13 +182,12 @@ export default function Home() {
           {/* Reviews  */}
           <div className="">
             <div className="grid md:grid-cols-3 gird-cols-1 gap-5 text-white mx-auto mt-20">
-              <div className="bg-brand-1 items-center flex flex-col justify-center gap-10 px-12 py-20 rounded-xl">
-                <p className="text-center">
+              <div className="bg-brand-1 flex flex-col gap-10 px-12 py-20 rounded-xl">
+                <p>
                   “CompraCasasUSA me acompañó en todo el trámite para comprar mi
                   casa en Houston, resolvieron todas mis dudas y ahora mi
                   inversión creció luego de un año.”
                 </p>
-                <p>-Alberto González</p>
                 <div className="relative w-1/2 flex justify-between">
                   <div className="material-icons ft-6">stars</div>
                   <div className="material-icons ft-6">stars</div>
@@ -196,16 +195,16 @@ export default function Home() {
                   <div className="material-icons ft-6">stars</div>
                   <div className="material-icons ft-6">stars</div>
                 </div>
+                <p className="text-right">— Alberto González</p>
               </div>
               {/* Gap-2 */}
-              <div className="bg-brand-1 items-center flex flex-col justify-center gap-10 px-12 py-20 rounded-xl">
-                <p className="text-center w-3/4">
+              <div className="bg-brand-1 flex flex-col gap-10 px-12 py-20 rounded-xl">
+                <p>
                   “Invertí en una propiedad en Houston hace un año y hasta hoy
                   mi crédito se sigue pagando solo, además ya estoy pensando en mejor llevarme a mis hijos
                   a estudiar a Estados Unidos. Con CompraCasasUSA aseguré mi
                   patrimonio y el de mi familia.”
                 </p>
-                <p>-Juan Carlos</p>
                 <div className="relative w-1/2 flex justify-between">
                   <div className="material-icons ft-6">stars</div>
                   <div className="material-icons ft-6">stars</div>
@@ -213,15 +212,15 @@ export default function Home() {
                   <div className="material-icons ft-6">stars</div>
                   <div className="material-icons ft-6">stars</div>
                 </div>
+                <p className="text-right">— Juan Carlos</p>
               </div>
               {/* Gap-3 */}
-              <div className="bg-brand-1 items-center flex flex-col justify-center gap-10 px-12 py-20 rounded-xl">
-                <p className="text-center">
+              <div className="bg-brand-1 flex flex-col gap-10 px-12 py-20 rounded-xl">
+                <p>
                   “CompraCasasUSA me acompañó en todos los trámites para comprar mi
                   propiedad en Texas, hicieron una estructura legal y se encargaron de todos los trámites para que mi
                   patrimonio esté seguro.”
                 </p>
-                <p>-Jose Armesí</p>
                 <div className="relative w-1/2 flex justify-between">
                   <div className="material-icons ft-6">stars</div>
                   <div className="material-icons ft-6">stars</div>
@@ -229,6 +228,7 @@ export default function Home() {
                   <div className="material-icons ft-6">stars</div>
                   <div className="material-icons ft-6">stars</div>
                 </div>
+                <p className="text-right">— Jose Armesí</p>
               </div>
             </div>
           </div>
@@ -236,13 +236,13 @@ export default function Home() {
         </div>
         <div className="flex flex-col justify-center items-center mt-16">
           <Link href="#contact"><a className="button mb-4">Agenda una cita, da clic</a></Link>
-          <p className="-ft-2">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
+          <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
       {/* Tramites */}
       <Blockbuster
         overhead="Gestión Inmobiliaria"
-        title="Lo mencioné antes pero voy a reforzar: De los trámites, nos encargamos nosotros"
+        title="Lo mencioné antes pero voy a reforzar: de los trámites, nos encargamos nosotros"
         image={flo}
       />
       <section className="container my-16">
@@ -285,7 +285,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col justify-center items-center mt-16">
           <Link href="#contact"><a className="button mb-4">Una asesoría llave en mano, clic</a></Link>
-          <p className="-ft-2">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
+          <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
 
@@ -344,7 +344,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col justify-center items-center">
           <Link href="#contact"><a className="button mb-4">¿Qué opinas? Da clic</a></Link>
-          <p className="-ft-2">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
+          <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
 
@@ -352,7 +352,7 @@ export default function Home() {
       <section id="contact" className="border-t border-brand-1 bg-brand-1 py-20">
         <div className="container">
           <div className="w-full md:w-1/2 mx-auto">
-            <h2 className="font-semibold text-white">
+            <h2 className="font-semibold text-white tracking-wide">
               Obtén una sesión de estrategia inmobiliaria y una pre-calificación de crédito hipotecario sin costo
             </h2>
             <div className="mt-20 mb-12">
