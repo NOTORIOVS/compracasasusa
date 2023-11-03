@@ -13,6 +13,7 @@ module.exports = {
           3: "#e2df26",
           4: "#C01010",
           5: "#37AC1A",
+          6: "#29225b",
         },
       },
       container: {

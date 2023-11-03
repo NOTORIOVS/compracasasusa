@@ -1,32 +1,20 @@
-import Head from "next/head";
-import { info } from "../../../info";
-import Header from "./header";
-import Footer from "./footer";
+import Head from 'next/head';
+import { info } from '../../../info';
+import Header from './header';
+import Footer from './footer';
 
-export default function Layout({ children }) {
-  const sub = {
-    bgColor: "bg-gray-100",
-    logo: {
-      href: "/",
-      content: <h1 className="ft-2 !mb-0">Subheader</h1>,
-    },
-    children: [
-      { label: "Home", href: "/" },
-      { label: "About", href: "/" },
-    ],
-  };
-
+export default function Layout({children}) {
   return (
     <>
       <Head>
         <title>{info.companyName}</title>
-        <meta name="description" content={info.description} />
+        <meta name="description" content={info.description}/>
       </Head>
-      <Header />
+      <Header/>
 
       <main className="flex-grow">{children}</main>
 
-      {/* <Footer /> */}
+      <Footer/>
     </>
   );
 }

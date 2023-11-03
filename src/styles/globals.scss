@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import 'type';
+@import 'form';
 
 html,
 body {
@@ -17,8 +18,8 @@ body {
 }
 
 main {
-  @apply flex flex-col;
-  @apply text-neutral-600 ;
+  @apply flex flex-col relative
+  text-neutral-600;
 }
 
 a.link {
@@ -39,24 +40,20 @@ a.link {
   }
 }
 
-input {
-  @extend .-ft-1;
-  @apply flex border border-gray-500 rounded-lg px-6 py-4 w-full mb-2;
+button, .button {
+  font-size: 1.6rem;
+  @apply flex justify-center
+  w-max px-8 py-4 font-bold tracking-wider
+  bg-brand-5 text-white rounded-lg
+  hover:bg-brand-1 hover:text-white;
+  &-secondary {
+    @extend .button;
+    @apply bg-transparent border border-brand-1 text-inherit hover:bg-transparent;
+  }
+  &[type] {
+    @extend .button;
+  }
 }
-label {
-  @apply flex mt-6 mb-2;
-}
-
- button, .button {
-   @extend .ft-0;
-   @apply flex w-max px-8 py-4 mt-8
-   bg-brand-3 text-white font-bold
-   hover:bg-brand-2;
-   &-secondary {
-     @extend .button;
-     @apply bg-transparent border border-brand-1 text-inherit hover:bg-transparent;
-   }
- }
 
 .text-block {
   @apply xl:w-1/2;
@@ -68,6 +65,14 @@ label {
   }
   & li {
     @apply before:content-['•'] before:mr-4 ml-4;
+  }
+}
+
+ol {
+  list-style: decimal;
+
+  & > li {
+    @apply ml-16 relative;
   }
 }
 

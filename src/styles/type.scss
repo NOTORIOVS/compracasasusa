@@ -55,13 +55,13 @@ h3 { @extend .ft-4 }
 h4 { @extend .ft-3 }
 h5 { @extend .ft-2 }
 h6 { @extend .ft-1 }
-p { @extend .ft-2 }
-li { @extend .-ft-1 }
+p { @extend .ft-0 }
+li { @extend .ft-0 }
 label { @extend .-ft-3 }
 b { @apply font-bold }
 
 h1, h2, h3, h4, h5, h6 {
-  @apply text-brand-1;
+  @apply text-brand-1 tracking-normal;
   margin-block-start: 0;
   // margin-block-end: 1rem;
 }
@@ -74,8 +74,7 @@ h4, h5, h6 {
   @apply font-semibold;
 }
 
-p {
-  @extend .ft-1;
+p, li {
   margin-block-start: 0;
   @apply tracking-wide;
   // margin-block-end: 1rem;
@@ -86,7 +85,7 @@ h4, h5, h6, p {
 }
 
 a {
-  @extend .ft-0;
+  font-size: inherit;
   color: inherit;
   text-decoration: none;
 }
