@@ -2,8 +2,9 @@ import Link from 'next/link';
 import { info } from '../../../info';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router';
-import { setCookie } from "cookies-next";
+import { setCookie } from 'cookies-next';
 import { useState } from 'react';
+import { restrictNumber, emailRegExp } from '../../utils/formValidators';
 
 export default function OptInForm() {
   const [sending, setSending] = useState(false);
@@ -11,48 +12,63 @@ export default function OptInForm() {
   const {
     register,
     handleSubmit,
+    formState: {errors},
   } = useForm();
 
   const onSubmit = (data) => {
-    setSending(true)
+    setSending(true);
 
     data.phone = '52' + data.phone.replace(/^\+?(52)?\s?0?1?|\s|\(|\)|-/g, '');
-    data.origin = 'Notoriovs Landing'
+    data.origin = 'Notoriovs Landing';
 
     fetch('https://hook.us1.make.com/s3wodpb45yes7d9jfbra5u0bcjy5fgl8', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        "Content-Type": "application/json"
-      }
+        'Content-Type': 'application/json',
+      },
     }).then((result) => result.json())
       .then(({id}) => {
-        setCookie('leadId', id)
+        setCookie('leadId', id);
         router.push(`/survey?id=${id}`);
-      })
+      });
 
-  }
+  };
 
   return (
     <form className="flex flex-col w-full space-y-4" onSubmit={handleSubmit(onSubmit)}>
-      <input {...register(
-        'fullName',
-        {
-          required: true,
-        }
-      )} placeholder="Tu nombre"/>
-      <input {...register(
-        'email',
-        {
-          required: true,
-        }
-      )} placeholder="Un email activo"/>
-      <input {...register(
-        'phone',
-        {
-          required: true,
-        }
-      )} placeholder="Teléfono de WhatsApp"/>
+      <input
+        {...register(
+          'fullName',
+          {
+            required: true,
+          },
+        )}
+        className={errors.fullName && '!bg-red-200'}
+        placeholder="Tu nombre"/>
+      <input
+        {...register(
+          'email',
+          {
+            required: true,
+            pattern: {
+              value: emailRegExp,
+              message: 'Revisa tu correo',
+            },
+          },
+        )}
+        className={errors.email && '!bg-red-200'}
+        placeholder="Un email activo"/>
+      <input
+        {...register(
+          'phone',
+          {
+            required: true,
+          },
+        )}
+        className={errors.phone && '!bg-red-200'}
+        onKeyPress={restrictNumber}
+        placeholder="Teléfono de WhatsApp"/>
 
       <button disabled={sending} className="w-full hover:!bg-brand-3">{!sending ? 'Comenzar →' : 'Espera...'}</button>
 
