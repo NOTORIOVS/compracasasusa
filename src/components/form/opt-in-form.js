@@ -29,6 +29,7 @@ export default function OptInForm() {
       },
     }).then((result) => result.json())
       .then(({id}) => {
+        fbq('track', 'CompleteRegistration');
         setCookie('leadId', id);
         router.push(`/survey?id=${id}`);
       });

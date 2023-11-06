@@ -45,7 +45,7 @@ export default function Survey() {
   const [inputError, setInputError] = useState(null);
   const [sending, setSending] = useState(false);
   const methods = useForm({mode: 'all'});
-  const {handleSubmit, setError, formState: {errors}, watch} = methods;
+  const {handleSubmit, setError, formState: {errors}} = methods;
 
   const router = useRouter();
 
@@ -78,6 +78,7 @@ export default function Survey() {
       },
     }).then((response) => response)
       .then(() => {
+        fbq('track', 'Lead');
         const url = 'https://compracasasusa.pipedrive.com/scheduler/Gk5k7xFK/asesoria-inmobiliaria-internacional';
 
         const forwardLink = document.createElement('a');
@@ -124,7 +125,8 @@ export default function Survey() {
                 />
               </div>
               <div className={`my-20 ${formStep === 2 ? 'block' : 'hidden'}`}>
-                <p className="ft-4 font-semibold mb-6">¿En cuál de estos rangos te sientes cómodo para realizar tu inversión?</p>
+                <p className="ft-4 font-semibold mb-6">¿En cuál de estos rangos te sientes cómodo para realizar tu
+                  inversión?</p>
                 <Radio
                   name="budget"
                   inputOptions={{required: 'Selecciona una opción'}}
