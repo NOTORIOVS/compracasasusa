@@ -176,8 +176,13 @@ export default function Survey() {
                   onClick={() => handleNext()}
                   disabled={sending}
                   className="mt-auto"
-                >{formStep === 4 ? 'Agendar cita' : sending ? 'Abriendo Calendario' : 'Siguiente'}
-                </button>
+                >{
+                  formStep === 4
+                    ? 'Agendar cita'
+                    : sending
+                      ? <><span className="material-symbols-outlined animate-spin mr-4">progress_activity</span><span>Abriendo Calendario</span></>
+                      : 'Siguiente'
+                }</button>
               </div>
             </form>
           </FormProvider>

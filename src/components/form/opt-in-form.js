@@ -74,7 +74,14 @@ export default function OptInForm() {
         onKeyPress={restrictNumber}
         placeholder="Teléfono de WhatsApp"/>
 
-      <button disabled={sending} className="w-full hover:!bg-brand-3">{!sending ? 'Comenzar →' : 'Espera...'}</button>
+      <button
+        disabled={sending}
+        className={`w-full ${sending ? '!bg-transparent' : 'hover:!bg-brand-3'}`}
+      >{
+        !sending
+          ? 'Comenzar →'
+          : <span className="material-symbols-outlined animate-spin">progress_activity</span>
+      }</button>
 
       <div className="mt-4">
         <p className="-ft-3 text-center text-white">Al dar clic aceptas nuestra&nbsp;
