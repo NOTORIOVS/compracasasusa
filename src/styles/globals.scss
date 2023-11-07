@@ -105,7 +105,8 @@ ol {
   font-weight: normal;
   font-style: normal;
   font-size: inherit;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   line-height: 1;
   text-transform: none;
   letter-spacing: normal;

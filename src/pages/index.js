@@ -41,7 +41,11 @@ export default function Home() {
         <div className="w-full h-full absolute bg-black/30 -z-1"/>
       </section>
 
-      <section className="reading-container my-16">
+      <section className="reading-container mb-16">
+        <div className="flex border-b border-brand-1 pb-4 mb-8">
+          <span className="material-icons mr-2 -ft-2">timer</span>
+          <p className="-ft-2" style={{marginBlockEnd: 0}}>Tiempo estimado: 5 min</p>
+        </div>
         <p className="ft-2">
           Entre asesores de bienes raíces y expertos en materia corporativa y fiscal internacional,<br/>
           buscamos facilitarte el poder crecer tu patrimonio hacia USA.<br/><br/>
@@ -75,7 +79,7 @@ export default function Home() {
         <p className=" ft-2">
           Entre plusvalía y rentas, cortas o largas, me
           di cuenta que con esta inversión podía generar casi 10 veces más que invirtiendo en bonos, CETES o en el
-          S&P-500</p>
+          S&P-500.</p>
         <div className="flex flex-col justify-center items-center">
           <Link href="#contact"><a className="button mb-4">3 grandes motivos ¿no? Da clic</a></Link>
           <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
@@ -98,8 +102,8 @@ export default function Home() {
           <b>Cómo le hacemos y cuál es nuestro proceso</b>
         </p>
         <p className="ft-2">
-          Pues con el fin de hacerte fácil esta inversión para crecer tu patrimonio: tenemos un proceso de <b>8
-          pasos</b><br/>
+          Pues con el fin de hacerte fácil esta inversión para crecer tu patrimonio: tenemos un proceso de <nobr><b>8
+          pasos</b></nobr><br/>
           Como decía antes: no somos una simple inmobiliaria.<br/>
           Pues comprar una casa en USA no solo es elegir la casa, dar el enganche y listo.<br/>
           Es una serie de pasos un poco más complejos:
