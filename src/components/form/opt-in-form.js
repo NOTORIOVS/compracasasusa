@@ -24,7 +24,6 @@ export default function OptInForm() {
     const _fbp = getCookie('_fbp');
     const payload = {...data, _fbc, _fbp};
 
-
     fetch('https://hook.us1.make.com/s3wodpb45yes7d9jfbra5u0bcjy5fgl8', {
       method: 'POST',
       body: JSON.stringify(payload),
@@ -34,7 +33,7 @@ export default function OptInForm() {
     }).then((result) => result.json())
       .then(({id}) => {
         fbq('track', 'CompleteRegistration');
-        setCookie('leadId', id);
+        setCookie('lead', {...data, id});
         router.push(`/survey?id=${id}`);
       });
 

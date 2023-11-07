@@ -24,14 +24,14 @@ const timeframeOpts = [
   {value: '6-meses', label: 'Al menos 6 meses'},
 ];
 const budgetOpts = [
-  {value: '350000-400000', label: 'De $350mil a $400mil usd'},
+  {value: '350000-400000', label: 'De $300mil a $400mil usd'},
   {value: '400000-500000', label: 'De $400mil a $500mil usd'},
   {value: '50000', label: 'Más de $500mil usd'},
 ];
 const stateOpts = [
+  {value: 'texas', label: 'Texas'},
   {value: 'california', label: 'California'},
   {value: 'fllorida', label: 'Florida'},
-  {value: 'texas', label: 'Texas'},
   {value: 'otro', label: 'Otro'},
 ];
 const commitmentOpts = [
@@ -67,11 +67,11 @@ export default function Survey() {
 
   const onSubmit = (data) => {
     setSending(true);
-    const leadId = getCookie('leadId');
+    const lead = getCookie('lead');
+    const {id, email, phone} = JSON.parse(lead);
     const _fbc = getCookie('_fbc');
     const _fbp = getCookie('_fbp');
-
-    const payload = {...data, leadId, _fbc, _fbp};
+    const payload = {...data, id, email, phone, _fbc, _fbp};
 
     fetch('https://hook.us1.make.com/an9tc915o5bnowb5dtpgpipb3vkugok8', {
       method: 'POST',
