@@ -193,18 +193,22 @@ export default function Survey() {
 }
 
 export async function getServerSideProps(ctx) {
-  const {query: {id}} = ctx;
+  const {req, res, query: {id}} = ctx;
+  const lead = getCookie('lead', {req, res});
 
-  if ((getCookie('leadId') === 'null' || !getCookie('leadId')) && !id) {
-    return {
-      redirect: {
-        permanent: false,
-        destination: '/#contact',
-      },
-    };
+  if (!lead || lead === 'null' || Object.keys(lead).length === 0) {
+    if (!id) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: '/#contact',
+        },
+      };
+    } else {
+      setCookie('lead', {...lead, id}, {req, res});
+      return {props: {}};
+    }
   }
-  if ((getCookie('leadId') === 'null' || !getCookie('leadId')) && id) {
-    setCookie('leadId', id);
-    return {props: {}};
-  }
+
+  return {props: {}}
 }
