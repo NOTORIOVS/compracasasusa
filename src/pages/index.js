@@ -47,8 +47,8 @@ export default function Home() {
           <p className="-ft-2" style={{marginBlockEnd: 0}}>Tiempo estimado: 5 min</p>
         </div>
         <p className="ft-2">
-          Entre asesores de bienes raíces y expertos en materia corporativa y fiscal internacional,<br/>
-          buscamos facilitarte el poder crecer tu patrimonio hacia USA.<br/><br/>
+          Buscamos facilitarte el poder crecer tu patrimonio en USA, entre asesores de bienes raíces y expertos en
+          materia corporativa y fiscal internacional.<br/><br/>
           Así, tú puedes enfocarte en cosas que requieren tu atención: <br/>tus negocios,<br/> tu familia<br/> y otros
           temas que importan más que
           intentar generar una estrategia de inversión.<br/><br/>
@@ -69,7 +69,7 @@ export default function Home() {
       <section className="reading-container my-16">
         <p className=" ft-2">Aquí te comparto mi top 3 de motivos:</p>
         <h3 className="sans font-bold ft-2">Los precios!</h3>
-        <p className="ft-2">En una comunidad de mejor nivel que un Solares o Valle Real, me
+        <p className="ft-2">En una comunidad con casa club, alberca, lagos, campos de golf y otras amenidades, me
           encontré casas que costaban un tercio en comparación de mi amada Guadalajara.</p>
         <h3 className="sans font-bold ft-2">Los créditos...</h3>
         <p className=" ft-2">
@@ -188,9 +188,8 @@ export default function Home() {
             <div className="grid md:grid-cols-3 gird-cols-1 gap-5 text-white mx-auto mt-20">
               <div className="bg-brand-1 flex flex-col gap-10 px-12 py-20 rounded-xl">
                 <p>
-                  “CompraCasasUSA me acompañó en todo el trámite para comprar mi
-                  casa en Houston, resolvieron todas mis dudas y ahora mi
-                  inversión creció luego de un año.”
+                  “CompraCasasUSA me acompañó en todo el trámite para comprar mi casa en Houston, resolvieron todas mis
+                  dudas y después de un año, mi inversión creció.”
                 </p>
                 <div className="relative w-1/2 flex justify-between">
                   <div className="material-icons ft-6">stars</div>
