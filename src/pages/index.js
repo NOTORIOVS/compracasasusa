@@ -30,7 +30,10 @@ export default function Home() {
             className="relative font-semibold ft-11 text-white [text-shadow:_2px_2px_0_rgb(0_0_0_/_60%)]">
             Tener tu casa nueva en USA puede costarte solo el 30% de su valor
           </h1>
-          <p className="ft-3">Y la liquidas con las rentas de tus inquilinos</p>
+          <div className="flex flex-col justify-center items-center mt-12">
+            <p className="ft-2 font-medium text-center mb-12">Agenda una sesión estratégica y <br/>pre-califica para tu crédito hipotecario sin costo</p>
+            <Link href="#contact"><a className="button mb-4">Agenda una sesión estratégica</a></Link>
+          </div>
         </div>
         <div className="absolute flex flex-col justify-center items-center text-white bottom-8 mt-8 md:mt-20 z-10">
           <p className="ft-1">Sigue leyendo</p>
@@ -44,7 +47,7 @@ export default function Home() {
       <section className="reading-container mb-16">
         <div className="flex border-b border-brand-1 pb-4 mb-8">
           <span className="material-icons mr-2 -ft-2">timer</span>
-          <p className="-ft-2" style={{marginBlockEnd: 0}}>Tiempo estimado: 5 min</p>
+          <p className="-ft-2" style={{marginBlockEnd: 0}}>Tiempo estimado: 4 min</p>
         </div>
         <p className="ft-2">
           Buscamos facilitarte el poder crecer tu patrimonio en USA, entre asesores de bienes raíces y expertos en
@@ -95,18 +98,15 @@ export default function Home() {
       {/* Story */}
       <section className="reading-container my-16">
         <p className="ft-2">
-          Basta de cuento, entremos en algo más profundo.<br/>
-          Y es que la mayoría de nuestros clientes siempre tienen la duda:
+          La mayoría de nuestros clientes siempre tiene la duda:
         </p>
         <p className="ft-2">
           <b>Cómo le hacemos y cuál es nuestro proceso</b>
         </p>
         <p className="ft-2">
-          Pues con el fin de hacerte fácil esta inversión para crecer tu patrimonio: tenemos un proceso de <nobr><b>8
-          pasos</b></nobr><br/>
           Como decía antes: no somos una simple inmobiliaria.<br/>
           Pues comprar una casa en USA no solo es elegir la casa, dar el enganche y listo.<br/>
-          Es una serie de pasos un poco más complejos:
+          Tenemos un proceso de <nobr><b>8 pasos</b></nobr>:
         </p>
         <ol>
           <li className="ft-1">Hacemos un scouting de comunidades <b>5 estrellas</b></li>
@@ -120,7 +120,7 @@ export default function Home() {
           <li className="ft-1">Te acompañamos a <b>firmar</b> ante empresa de título<br/></li>
         </ol>
         <p className="ft-2">
-          Para tu buena suerte, nosotros contamos con un equipo especializado en todo este proceso. Para literalmente
+          Contamos con un equipo especializado en este proceso. Para literalmente
           entregarte una llave en mano.
         </p>
         <div className="flex flex-col justify-center items-center">
@@ -356,7 +356,7 @@ export default function Home() {
         <div className="container">
           <div className="w-full md:w-1/2 mx-auto">
             <h2 className="font-semibold text-white tracking-wide">
-              Obtén una sesión de estrategia inmobiliaria y una pre-calificación de crédito hipotecario sin costo
+              Obtén una sesión de estrategia inmobiliaria y una <nobr>pre-calificación</nobr> de crédito hipotecario sin costo
             </h2>
             <div className="mt-20 mb-12">
               <p className="ft-1 text-white">
