@@ -1,10 +1,6 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 import Image from 'next/image';
-import t1 from '../../public/assets/14.jpg';
-import t2 from '../../public/assets/15.jpg';
-import t3 from '../../public/assets/16.jpg';
-import t4 from '../../public/assets/17.jpg';
 import t8 from '../../public/landing/cc-landing-tex.jpg';
 import why from '../../public/landing/cc-landing-05.jpeg';
 import diagram360 from '../../public/landing/cc-landing-360.png';
@@ -19,8 +15,17 @@ import testimonials from '../../public/landing/cc-landing-testimonio.png';
 import Blockbuster from '../components/blockbuster';
 import Link from 'next/link';
 import OptInForm from '../components/form/opt-in-form';
+import { useEffect } from 'react';
+import scrollDepth from '../utils/scrollDepth';
 
 export default function Home() {
+  useEffect(() => {
+    scrollDepth({
+      values: [25, 50, 75, 100],
+      callback: (value) => fbq('trackCustom', `Scroll Depth: ${value}`),
+    })
+  })
+
   return (
     <>       {/* Banner */}
       <section
@@ -243,54 +248,54 @@ export default function Home() {
         </div>
       </section>
       {/* Tramites */}
-      <Blockbuster
-        overhead="Gestión Inmobiliaria"
-        title="Lo mencioné antes pero voy a reforzar: de los trámites, nos encargamos nosotros"
-        image={flo}
-      />
-      <section className="container my-16">
-        <p className="reading-container ft-2">
-          Te ofrecemos una experiencia integral, acompañándote desde la
-          búsqueda de la propiedad hasta la asesoría financiera y legal
-          que necesitas. <br/><br/>
-          Vas a recibir una orientación completa para que
-          puedas tomar decisiones basadas en la información y la
-          seguridad.<br/><br/>
-          Te ayudamos con:
-        </p>
-        <div className="flex flex-col items-center justify-center w-full">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">
-            <div className="gap-4 flex flex-col">
-              <Image src={t1}/>
-              <p className="text-center font-semibold">
-                Apertura de cuentas bancarias en USA desde MX
-              </p>
-            </div>
-            <div className="gap-4 flex flex-col">
-              <Image src={t2}/>
-              <p className="text-center font-semibold">
-                Constitución de empresas para el trámite de tu crédito
-              </p>
-            </div>
-            <div className="gap-4 flex flex-col">
-              <Image src={t3}/>
-              <p className="text-center font-semibold">
-                Trámite de tu visa de inversionista
-              </p>
-            </div>
-            <div className="gap-4 flex flex-col">
-              <Image src={t4}/>
-              <p className="text-center font-semibold">
-                Trámite de tu crédito hipotecario
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col justify-center items-center mt-16">
-          <Link href="#contact"><a className="button mb-4">Una asesoría llave en mano, clic</a></Link>
-          <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
-        </div>
-      </section>
+      {/*<Blockbuster*/}
+      {/*  overhead="Gestión Inmobiliaria"*/}
+      {/*  title="Lo mencioné antes pero voy a reforzar: de los trámites, nos encargamos nosotros"*/}
+      {/*  image={flo}*/}
+      {/*/>*/}
+      {/*<section className="container my-16">*/}
+      {/*  <p className="reading-container ft-2">*/}
+      {/*    Te ofrecemos una experiencia integral, acompañándote desde la*/}
+      {/*    búsqueda de la propiedad hasta la asesoría financiera y legal*/}
+      {/*    que necesitas. <br/><br/>*/}
+      {/*    Vas a recibir una orientación completa para que*/}
+      {/*    puedas tomar decisiones basadas en la información y la*/}
+      {/*    seguridad.<br/><br/>*/}
+      {/*    Te ayudamos con:*/}
+      {/*  </p>*/}
+      {/*  <div className="flex flex-col items-center justify-center w-full">*/}
+      {/*    <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8">*/}
+      {/*      <div className="gap-4 flex flex-col">*/}
+      {/*        <Image src={t1}/>*/}
+      {/*        <p className="text-center font-semibold">*/}
+      {/*          Apertura de cuentas bancarias en USA desde MX*/}
+      {/*        </p>*/}
+      {/*      </div>*/}
+      {/*      <div className="gap-4 flex flex-col">*/}
+      {/*        <Image src={t2}/>*/}
+      {/*        <p className="text-center font-semibold">*/}
+      {/*          Constitución de empresas para el trámite de tu crédito*/}
+      {/*        </p>*/}
+      {/*      </div>*/}
+      {/*      <div className="gap-4 flex flex-col">*/}
+      {/*        <Image src={t3}/>*/}
+      {/*        <p className="text-center font-semibold">*/}
+      {/*          Trámite de tu visa de inversionista*/}
+      {/*        </p>*/}
+      {/*      </div>*/}
+      {/*      <div className="gap-4 flex flex-col">*/}
+      {/*        <Image src={t4}/>*/}
+      {/*        <p className="text-center font-semibold">*/}
+      {/*          Trámite de tu crédito hipotecario*/}
+      {/*        </p>*/}
+      {/*      </div>*/}
+      {/*    </div>*/}
+      {/*  </div>*/}
+      {/*  <div className="flex flex-col justify-center items-center mt-16">*/}
+      {/*    <Link href="#contact"><a className="button mb-4">Una asesoría llave en mano, clic</a></Link>*/}
+      {/*    <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>*/}
+      {/*  </div>*/}
+      {/*</section>*/}
 
       <Blockbuster
         overhead="Propiedades"
