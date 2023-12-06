@@ -1,6 +1,10 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 import Image from 'next/image';
+import t1 from '../../public/assets/14.jpg';
+import t2 from '../../public/assets/15.jpg';
+import t3 from '../../public/assets/16.jpg';
+import t4 from '../../public/assets/17.jpg';
 import t8 from '../../public/landing/cc-landing-tex.jpg';
 import why from '../../public/landing/cc-landing-05.jpeg';
 import diagram360 from '../../public/landing/cc-landing-360.png';
@@ -36,7 +40,7 @@ export default function Home() {
             Tener tu casa nueva en USA puede costarte solo el 30% de su valor
           </h1>
           <div className="flex flex-col justify-center items-center mt-12">
-            <p className="ft-2 font-medium text-center mb-12">Agenda una sesión estratégica y <br/>pre-califica para tu crédito hipotecario sin costo</p>
+            <p className="ft-2 font-medium text-center mb-12">Agenda una sesión estratégica personalizada y <br/>pre-califica para tu crédito hipotecario sin costo</p>
             <Link href="#contact"><a className="button mb-4">Agenda una sesión estratégica</a></Link>
           </div>
         </div>
@@ -361,13 +365,13 @@ export default function Home() {
         <div className="container">
           <div className="w-full md:w-1/2 mx-auto">
             <h2 className="font-semibold text-white tracking-wide">
-              Obtén una sesión de estrategia inmobiliaria y una <nobr>pre-calificación</nobr> de crédito hipotecario sin costo
+              Agenda una sesión de estrategia inmobiliaria uno a uno y <nobr>pre-califica</nobr> para tu crédito hipotecario en USA
             </h2>
             <div className="mt-20 mb-12">
               <p className="ft-1 text-white">
                 Ya llegaste hasta acá, <br/>ya le dedicaste al menos 5 minutos de tu valioso tiempo a leer esta
                 historia.<br/><br/>
-                Ayúdanos con tus datos y a responder 5 preguntas para agendar tu sesión estratégica.
+                Ayúdanos con tus datos y a responder 5 preguntas para agendar tu sesión estratégica personalizada.
               </p>
             </div>
             <OptInForm/>

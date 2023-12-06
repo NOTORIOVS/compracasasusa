@@ -152,7 +152,7 @@ export default function Survey() {
               </div>
               <div className={`my-20 ${formStep === 4 ? 'block' : 'hidden'}`}>
                 <p className="ft-2">Dado al volumen de solicitudes que tenemos, en ocasiones es complicado
-                  re-agendar.</p>
+                  re-agendar tu sesión uno a uno.</p>
                 <p className="ft-2 font-bold">¿Contamos con tu asistencia puntual el día y hora que selecciones?</p>
                 <Radio
                   name="commitment"
