@@ -26,7 +26,7 @@ const timeframeOpts = [
 const budgetOpts = [
   {value: '350000-400000', label: 'De $300mil a $400mil usd'},
   {value: '400000-500000', label: 'De $400mil a $500mil usd'},
-  {value: '50000', label: 'Más de $500mil usd'},
+  {value: '500000', label: 'Más de $500mil usd'},
 ];
 const stateOpts = [
   {value: 'texas', label: 'Texas'},
