@@ -17,7 +17,7 @@ export default function OptInForm() {
 
   const onSubmit = (data) => {
     setSending(true);
-    data.phone = '52' + data.phone.replace(/^(MX)?\+?(52)?\s?0?1?|\s|\(|\)|-/g, '');
+    data.phone = '52' + data.phone.replace(/^(MX)?\+?(52)?\s?0?1?|\s|\(|\)|-|[a-zA-Z]/g, '');
     data.origin = 'Notoriovs Landing';
 
     const _fbc = getCookie('_fbc');
@@ -71,7 +71,7 @@ export default function OptInForm() {
           },
         )}
         className={errors.phone && '!bg-red-200'}
-        onKeyPress={restrictNumber}
+        onKeyDown={restrictNumber}
         placeholder="Teléfono de WhatsApp"/>
 
       <button
