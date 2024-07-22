@@ -32,7 +32,7 @@ export default function OptInForm() {
       },
     }).then((result) => result.json())
       .then(({id}) => {
-        fbq('track', 'CompleteRegistration');
+        fbq('track', 'CompleteRegistration', {}, {fbc: getCookie('_fbc')});
         setCookie('lead', {...data, id});
         router.push(`/survey?id=${id}`);
       });
@@ -66,9 +66,7 @@ export default function OptInForm() {
       <input
         {...register(
           'phone',
-          {
-            required: true,
-          },
+          {required: true, maxLength: 10, minLength: 10},
         )}
         className={errors.phone && '!bg-red-200'}
         onKeyDown={restrictNumber}

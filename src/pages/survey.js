@@ -31,8 +31,7 @@ const budgetOpts = [
 const stateOpts = [
   {value: 'texas', label: 'Texas'},
   {value: 'california', label: 'California'},
-  {value: 'fllorida', label: 'Florida'},
-  {value: 'otro', label: 'Otro'},
+  {value: 'florida', label: 'Florida'},
 ];
 const commitmentOpts = [
   {value: 'si', label: 'Claro, estaré atento'},
@@ -141,10 +140,11 @@ export default function Survey() {
               </div>
               <div className={`my-20 ${formStep === 3 ? 'block' : 'hidden'}`}>
                 <p className="ft-4 font-semibold mb-6">¿En qué estado de USA te interesa comprar?</p>
+                <p className="mb-6">Por el momento únicamente contamos con propiedades en estos estados, selecciona el de mayor interés</p>
                 <Radio
                   name="state"
                   inputOptions={{required: 'Selecciona una opción'}}
-                  placeholder="selecciona uno por fa"
+                  placeholder="selecciona uno por favor"
                   options={stateOpts}
                   optCols={1}
                   className={inputError === 3 ? '!border-brand-2' : undefined}
