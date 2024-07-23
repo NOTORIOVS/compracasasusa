@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { getCookie, setCookie } from 'cookies-next';
 import { useState } from 'react';
 import { restrictNumber, emailRegExp } from '../../utils/formValidators';
+import fbEvent from '../../services/fbEvents';
 
 export default function OptInForm() {
   const [sending, setSending] = useState(false);
@@ -24,7 +25,7 @@ export default function OptInForm() {
     const _fbp = getCookie('_fbp');
     const payload = {...data, _fbc, _fbp};
 
-    fetch('https://hook.us1.make.com/s3wodpb45yes7d9jfbra5u0bcjy5fgl8', {
+    fetch(info.optInWebhook, {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: {
@@ -32,11 +33,21 @@ export default function OptInForm() {
       },
     }).then((result) => result.json())
       .then(({id}) => {
-        fbq('track', 'CompleteRegistration', {}, {fbc: getCookie('_fbc')});
+        fbEvent(
+          'CompleteRegistration',
+          {email: data.email, phone: data.phone, externalID: id},
+        );
         setCookie('lead', {...data, id});
-        router.push(`/survey?id=${id}`);
-      });
-
+        router.push(`/survey?id=${id}`)
+      })
+      .catch(() => {
+        fbEvent(
+          'CompleteRegistration',
+          {email: data.email, phone: data.phone, externalID: ''},
+        );
+        setCookie('lead', {...data});
+        router.push('/thankyou');
+      })
   };
 
   return (

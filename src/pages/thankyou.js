@@ -15,7 +15,7 @@ export default function ThankYou() {
         <p className="text-center ft-6 mt-20">Si no se abrió nuestro calendario para agendar tu sesión estratégica</p>
         <a
           className="button !bg-brand-2 ft-4 flex justify-center items-center mt-6"
-          href="https://compracasasusa.pipedrive.com/scheduler/Gk5k7xFK/asesoria-inmobiliaria-internacional"
+          href={info.schedulerLink}
           target="_blank"
         >
           <span className="material-icons">arrow_forward</span>Da click aquí<span

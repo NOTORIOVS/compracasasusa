@@ -29,11 +29,13 @@ export default function FbEvent(req, res) {
           fbp: getCookie('_fbp', {req, res}),
           em: [hash(user.em)],
           ph: [hash(user.ph)],
+          external_id: [user.externalID],
           client_user_agent: req.headers['user-agent'],
+          client_ip_address: req.ip || req.connection.remoteAddress
         },
       },
     ],
-    test_event_code: 'TEST75158',
+    test_event_code: process.env.FB_CAPI_TEST_EVENT_CODE,
   }
 
   return fetch(url, {
@@ -45,5 +47,5 @@ export default function FbEvent(req, res) {
     .then(result => {
       res.status(200).json(result);
     })
-    .catch(error => console.log('error', error));
+    .catch(error => console.log('FB error', error));
 }

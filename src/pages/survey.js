@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import { Radio } from '../components/form/formAtoms';
 import { useRouter } from 'next/router';
 import { setCookie, getCookie } from 'cookies-next';
+import { info } from '../../info';
+import fbEvent from '../services/fbEvents';
 
 const formSteps = [
   'intention',
@@ -72,7 +74,7 @@ export default function Survey() {
     const _fbp = getCookie('_fbp');
     const payload = {...data, id, email, phone, _fbc, _fbp};
 
-    fetch('https://hook.us1.make.com/an9tc915o5bnowb5dtpgpipb3vkugok8', {
+    fetch(info.surveyWebhook, {
       method: 'POST',
       body: JSON.stringify(payload),
       headers: {
@@ -80,8 +82,11 @@ export default function Survey() {
       },
     }).then((response) => response)
       .then(() => {
-        fbq('track', 'Lead');
-        const url = 'https://compracasasusa.pipedrive.com/scheduler/Gk5k7xFK/asesoria-inmobiliaria-internacional';
+        fbEvent(
+          'Lead',
+          {email: data.email, phone: data.phone, externalID: id},
+        );
+        const url = info.schedulerLink;
 
         const forwardLink = document.createElement('a');
         forwardLink.href = url;

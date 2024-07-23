@@ -5,6 +5,7 @@ export default function fbEvent(
   userData = {
     phone: '',
     email: '',
+    externalID: ''
   },
   eventID = Date.now()
 ) {
@@ -13,11 +14,12 @@ export default function fbEvent(
     eventID,
     user: {
       ph: userData.phone,
-      em: userData.email
-    }
+      em: userData.email,
+      externalID: userData.externalID
+    },
   })
 
-  fbq('track', eventName, {}, {fbc: getCookie('_fbc')});
+  fbq('track', eventName, {fbc: getCookie('_fbc')}, {eventID});
 
   return fetch(`/api/fb-event`, {
     method: 'POST',
