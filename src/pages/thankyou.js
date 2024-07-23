@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { info } from '../../info';
 import t8 from '../../public/landing/cc-landing-04.jpg';
 import tex from '../../public/landing/cc-landing-tex.jpg';
 import cal from '../../public/landing/cc-landing-cal.jpg';
