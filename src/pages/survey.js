@@ -84,7 +84,7 @@ export default function Survey() {
       .then(() => {
         fbEvent(
           'Lead',
-          {email: data.email, phone: data.phone, externalID: id},
+          {email, phone, externalID: id},
         );
         const url = info.schedulerLink;
 
