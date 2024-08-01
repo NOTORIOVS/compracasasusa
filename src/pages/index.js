@@ -19,7 +19,7 @@ import testimonials from '../../public/landing/cc-landing-testimonio.png';
 import Blockbuster from '../components/blockbuster';
 import Link from 'next/link';
 import OptInForm from '../components/form/opt-in-form';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import scrollDepth from '../utils/scrollDepth';
 
 export default function Home() {
