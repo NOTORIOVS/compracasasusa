@@ -54,7 +54,6 @@ export default function Survey() {
     formSteps.map((fs) => setError(fs, {}));
   }, [setError]);
 
-
   const handleNext = () => {
     const formStepName = formSteps[formStep];
     if (errors[formStepName]) {

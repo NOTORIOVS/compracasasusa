@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { restrictNumber, emailRegExp } from '../../utils/formValidators';
 import fbEvent from '../../services/fbEvents';
 
-export default function OptInForm() {
+export default function OptInForm({lastClick = 'fullScroll'}) {
   const [sending, setSending] = useState(false);
   const router = useRouter();
   const {
@@ -20,6 +20,7 @@ export default function OptInForm() {
     setSending(true);
     data.phone = '52' + data.phone.replace(/^(MX)?\+?(52)?\s?0?1?|\s|\(|\)|-|[a-zA-Z]/g, '');
     data.origin = 'Notoriovs Landing';
+    data.lastClick = lastClick;
 
     const _fbc = getCookie('_fbc');
     const _fbp = getCookie('_fbp');

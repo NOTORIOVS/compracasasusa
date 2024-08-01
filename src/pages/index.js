@@ -23,6 +23,8 @@ import { useEffect } from 'react';
 import scrollDepth from '../utils/scrollDepth';
 
 export default function Home() {
+  const [lastClick, setLastClick] = useState('');
+
   useEffect(() => {
     scrollDepth({
       values: [25, 50, 75, 100],
@@ -41,7 +43,7 @@ export default function Home() {
           </h1>
           <div className="flex flex-col justify-center items-center mt-12">
             <p className="ft-2 font-medium text-center mb-12">Agenda una sesión estratégica y <br/>pre-califica para tu crédito hipotecario sin costo</p>
-            <Link href="#contact"><a className="button mb-4">Agenda una sesión estratégica</a></Link>
+            <Link href="#contact"><a onClick={() => setLastClick('hero')} className="button mb-4">Agenda una sesión estratégica</a></Link>
           </div>
         </div>
         <div className="absolute flex flex-col justify-center items-center text-white bottom-8 mt-8 md:mt-20 z-10">
@@ -67,7 +69,7 @@ export default function Home() {
           Y probablemente, te termine costando más tiempo y dinero.
         </p>
         <div className="flex flex-col justify-center items-center">
-          <Link href="#contact"><a className="button mb-4">Contáctanos, da clic</a></Link>
+          <Link href="#contact"><a onClick={() => setLastClick('story')} className="button mb-4">Contáctanos, da clic</a></Link>
           <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
@@ -93,7 +95,7 @@ export default function Home() {
           di cuenta que con esta inversión podía generar casi 10 veces más que invirtiendo en bonos, CETES o en el
           S&P-500.</p>
         <div className="flex flex-col justify-center items-center">
-          <Link href="#contact"><a className="button mb-4">3 grandes motivos ¿no? Da clic</a></Link>
+          <Link href="#contact"><a onClick={() => setLastClick('benefits')} className="button mb-4">3 grandes motivos ¿no? Da clic</a></Link>
           <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
@@ -133,7 +135,7 @@ export default function Home() {
           entregarte una llave en mano.
         </p>
         <div className="flex flex-col justify-center items-center">
-          <Link href="#contact"><a className="button mb-4">¿Quieres saber más? Da clic</a></Link>
+          <Link href="#contact"><a onClick={() => setLastClick('process')} className="button mb-4">¿Quieres saber más? Da clic</a></Link>
           <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
@@ -179,7 +181,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <Link href="#contact"><a className="button mb-4">¡Motivos sobran! Da clic</a></Link>
+          <Link href="#contact"><a onClick={() => setLastClick('target')} className="button mb-4">¡Motivos sobran! Da clic</a></Link>
           <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
@@ -247,7 +249,7 @@ export default function Home() {
           <div className="h-32 bg-red-600 w-screen absolute -z-10 mt-34"/>
         </div>
         <div className="flex flex-col justify-center items-center mt-16">
-          <Link href="#contact"><a className="button mb-4">Agenda una cita, da clic</a></Link>
+          <Link href="#contact"><a onClick={() => setLastClick('testimonials')} className="button mb-4">Agenda una cita, da clic</a></Link>
           <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
@@ -296,7 +298,7 @@ export default function Home() {
       {/*    </div>*/}
       {/*  </div>*/}
       {/*  <div className="flex flex-col justify-center items-center mt-16">*/}
-      {/*    <Link href="#contact"><a className="button mb-4">Una asesoría llave en mano, clic</a></Link>*/}
+      {/*    <Link href="#contact"><a onClick={() => setLastClick('formalities')} className="button mb-4">Una asesoría llave en mano, clic</a></Link>*/}
       {/*    <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>*/}
       {/*  </div>*/}
       {/*</section>*/}
@@ -355,7 +357,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex flex-col justify-center items-center">
-          <Link href="#contact"><a className="button mb-4">¿Qué opinas? Da clic</a></Link>
+          <Link href="#contact"><a onClick={() => setLastClick('properties')} className="button mb-4">¿Qué opinas? Da clic</a></Link>
           <p className="-ft-2 text-center">Agenda una sesión y pre-califica para tu crédito hipotecario sin costo</p>
         </div>
       </section>
@@ -374,7 +376,9 @@ export default function Home() {
                 Ayúdanos con tus datos y a responder 5 preguntas para agendar tu sesión estratégica.
               </p>
             </div>
-            <OptInForm/>
+            <OptInForm
+              lastClick={lastClick}
+            />
           </div>
         </div>
       </section>
