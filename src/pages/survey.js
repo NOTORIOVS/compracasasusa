@@ -9,9 +9,11 @@ import fbEvent from '../services/fbEvents';
 
 const formSteps = [
   'intention',
-  'timeframe',
   'budget',
+  'timeframe',
   'state',
+  'downPayment',
+  'experience',
   'commitment',
 ];
 
@@ -20,25 +22,40 @@ const intentionOpts = [
   {value: 'segundo-hogar', label: 'Segundo Hogar'},
   {value: 'residencia', label: 'Residencia'},
 ];
+
 const timeframeOpts = [
   {value: 'inmediato', label: 'De inmediato'},
   {value: '3-meses', label: 'Dentro de 3 meses'},
-  {value: '6-meses', label: 'Al menos 6 meses'},
+  {value: '6-meses', label: '6 meses o más'},
 ];
+
+const downPaymentOpts = [
+  {value: 'no', label: 'No cuento con ese monto'},
+  {value: 'probable', label: 'Puedo buscar la forma'},
+  {value: 'si', label: 'Sí, totalmente!'},
+];
+
 const budgetOpts = [
-  {value: '350000-400000', label: 'De $300mil a $400mil usd'},
-  {value: '400000-500000', label: 'De $400mil a $500mil usd'},
-  {value: '500000', label: 'Más de $500mil usd'},
+  {value: '250000-350000', label: 'De $250mil a $350mil usd'},
+  {value: '350000-450000', label: 'De $350mil a $450mil usd'},
+  {value: '450000-600000', label: 'De $450mil a $600mil usd'},
+  {value: '600000+', label: 'Más de $600mil usd'},
 ];
 const stateOpts = [
-  {value: 'texas', label: 'Texas'},
-  {value: 'california', label: 'California'},
-  {value: 'florida', label: 'Florida'},
+  {value: 'texas', label: 'Texas (Desde $270,000 usd)'},
+  {value: 'florida', label: 'Florida (Desde $480,000 usd)'},
+  {value: 'california', label: 'California (Desde $700,000 usd)'},
 ];
 const commitmentOpts = [
-  {value: 'si', label: 'Claro, estaré atento'},
+  {value: 'comprometido', label: 'Claro, estaré atento'},
   {value: 'tal-vez', label: 'No estoy seguro'},
   {value: 'recordar', label: 'Recuérdame antes por favor'},
+];
+
+const experienceOpts = [
+  {value: 'primerizo', label: 'Es mi primera inversión inmobiliaria'},
+  {value: 'broker', label: 'Soy broker inmobiliario'},
+  {value: 'experimentado', label: 'Sí, sí tengo experiencia en bienes raíces'},
 ];
 
 export default function Survey() {
@@ -46,7 +63,9 @@ export default function Survey() {
   const [inputError, setInputError] = useState(null);
   const [sending, setSending] = useState(false);
   const methods = useForm({mode: 'all'});
-  const {handleSubmit, setError, formState: {errors}} = methods;
+  const {handleSubmit, setError, formState: {errors}, watch} = methods;
+
+  // console.log(watch());
 
   const router = useRouter();
 
@@ -62,7 +81,7 @@ export default function Survey() {
     }
     setInputError(null);
     window.scrollTo(0, 0);
-    return formStep < 4 && setFormStep(formStep + 1);
+    return formStep < 6 && setFormStep(formStep + 1);
   };
 
   const onSubmit = (data) => {
@@ -101,9 +120,9 @@ export default function Survey() {
       <div className="container !p-0 flex flex-col flex-grow items-center pointer-events-auto touch-auto">
         <div className="survey-card">
           <div className="w-full absolute left-0 bottom-0 bg-gray-100">
-            <div className={`h-6 bg-brand-1`} style={{width: `${((formStep + 1) / 5) * 100}%`}}/>
+            <div className={`h-6 bg-brand-1`} style={{width: `${((formStep + 1) / 7) * 100}%`}}/>
           </div>
-          <p className="-ft-1">Pregunta {formStep + 1} de 5</p>
+          <p className="-ft-1">Pregunta {formStep + 1} de 7</p>
 
           <FormProvider {...methods}>
             <form className="flex flex-col flex-grow" onSubmit={handleSubmit(onSubmit)}>
@@ -112,7 +131,7 @@ export default function Survey() {
                 <Radio
                   name="intention"
                   inputOptions={{required: 'Selecciona una opción'}}
-                  placeholder="selecciona uno por fa"
+                  placeholder="selecciona una opción por favor"
                   options={intentionOpts}
                   optCols={1}
                   className={inputError === 0 ? '!border-brand-2' : undefined}
@@ -120,52 +139,81 @@ export default function Survey() {
               </div>
 
               <div className={`my-20 ${formStep === 1 ? 'block' : 'hidden'}`}>
-                <p className="ft-4 font-semibold mb-6">¿Cuándo tienes pensado hacer tu inversión?</p>
-                <Radio
-                  name="timeframe"
-                  inputOptions={{required: 'Selecciona una opción'}}
-                  placeholder="selecciona uno por fa"
-                  options={timeframeOpts}
-                  optCols={1}
-                  className={inputError === 1 ? '!border-brand-2' : undefined}
-                />
-              </div>
-              <div className={`my-20 ${formStep === 2 ? 'block' : 'hidden'}`}>
                 <p className="ft-4 font-semibold mb-6">¿En cuál de estos rangos te sientes cómodo para realizar tu
                   inversión?</p>
                 <Radio
                   name="budget"
                   inputOptions={{required: 'Selecciona una opción'}}
-                  placeholder="selecciona uno por fa"
+                  placeholder="selecciona una opción por favor"
                   options={budgetOpts}
+                  optCols={1}
+                  className={inputError === 1 ? '!border-brand-2' : undefined}
+                />
+              </div>
+
+              <div className={`my-20 ${formStep === 2 ? 'block' : 'hidden'}`}>
+                <p className="ft-4 font-semibold mb-6">¿Cuándo tienes pensado hacer tu inversión?</p>
+                <Radio
+                  name="timeframe"
+                  inputOptions={{required: 'Selecciona una opción'}}
+                  placeholder="selecciona una opción por favor"
+                  options={timeframeOpts}
                   optCols={1}
                   className={inputError === 2 ? '!border-brand-2' : undefined}
                 />
               </div>
+
               <div className={`my-20 ${formStep === 3 ? 'block' : 'hidden'}`}>
                 <p className="ft-4 font-semibold mb-6">¿En qué estado de USA te interesa comprar?</p>
-                <p className="mb-6">Por el momento únicamente contamos con propiedades en estos estados, selecciona el de mayor interés</p>
+                <p className="ft-1 mb-6">Por el momento únicamente contamos con propiedades en estos estados, selecciona el
+                  de mayor interés</p>
                 <Radio
                   name="state"
                   inputOptions={{required: 'Selecciona una opción'}}
-                  placeholder="selecciona uno por favor"
+                  placeholder="selecciona una opción por favor"
                   options={stateOpts}
                   optCols={1}
                   className={inputError === 3 ? '!border-brand-2' : undefined}
                 />
               </div>
+
               <div className={`my-20 ${formStep === 4 ? 'block' : 'hidden'}`}>
-                <p className="ft-2">Dado al volumen de solicitudes que tenemos, en ocasiones es complicado
-                  re-agendar.</p>
-                <p className="ft-2 font-bold">¿Contamos con tu asistencia puntual el día y hora que selecciones?</p>
+                <p className="ft-4 font-semibold mb-6">Para apartar tu casa solo necesitas el 3% hoy mismo. ¿Cuentas con ese monto?</p>
+                <Radio
+                  name="downPayment"
+                  inputOptions={{required: 'Selecciona una opción'}}
+                  placeholder="selecciona una opción por favor"
+                  options={downPaymentOpts}
+                  optCols={3}
+                  className={inputError === 4 ? '!border-brand-2' : undefined}
+                />
+                <p className="ft-1 mt-12"><b>Nota:</b> El 35% del enganche lo pagarías hasta que te entreguemos tu casa.</p>
+              </div>
+
+              <div className={`my-20 ${formStep === 5 ? 'block' : 'hidden'}`}>
+                <p className="ft-4 font-semibold mb-6">¿Tienes experiencia en inversiones inmobiliarias?</p>
+                <Radio
+                  name="experience"
+                  inputOptions={{required: 'Selecciona una opción'}}
+                  placeholder="selecciona una opción por favor"
+                  options={experienceOpts}
+                  optCols={1}
+                  className={inputError === 5 ? '!border-brand-2' : undefined}
+                />
+              </div>
+
+              <div className={`my-20 ${formStep === 6 ? 'block' : 'hidden'}`}>
+                <p className="ft-4 font-bold mb-6">Estás a punto de programar una cita con nosotros. ¿Contamos con tu
+                  asistencia puntual el día y hora que selecciones?</p>
                 <Radio
                   name="commitment"
                   inputOptions={{required: 'Selecciona una opción'}}
-                  placeholder="selecciona uno por fa"
+                  placeholder="selecciona una opción por favor"
                   options={commitmentOpts}
                   optCols={1}
-                  className={inputError === 4 ? '!border-brand-2' : undefined}
+                  className={inputError === 6 ? '!border-brand-2' : undefined}
                 />
+                <p className="ft-1 mt-12">Dado al volumen de solicitudes que tenemos, en ocasiones es complicado re-programar.</p>
               </div>
 
               <div className="flex justify-between w-full mt-auto">
@@ -176,12 +224,12 @@ export default function Survey() {
                 >Atrás
                 </button>
                 <button
-                  type={formStep < 4 ? 'button' : 'submit'}
+                  type={formStep < 6 ? 'button' : 'submit'}
                   onClick={() => handleNext()}
                   disabled={sending}
                   className="mt-auto"
                 >{
-                  formStep === 4
+                  formStep === 6
                     ? 'Agendar cita'
                     : sending
                       ? <><span className="material-symbols-outlined animate-spin mr-4">progress_activity</span><span>Abriendo Calendario</span></>

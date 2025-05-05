@@ -24,7 +24,9 @@ export default function OptInForm({lastClick = 'fullScroll'}) {
 
     const _fbc = getCookie('_fbc');
     const _fbp = getCookie('_fbp');
-    const payload = {...data, _fbc, _fbp};
+    const leadUtm = getCookie('lead_utm');
+    const utm = JSON.parse(leadUtm);
+    const payload = {...data,...utm, _fbc, _fbp};
 
     fetch(info.optInWebhook, {
       method: 'POST',
