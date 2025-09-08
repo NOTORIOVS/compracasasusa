@@ -30,7 +30,7 @@ const timeframeOpts = [
 ];
 
 const downPaymentOpts = [
-  {value: 'no', label: 'No cuento con ese monto'},
+  {value: 'no', label: 'No'},
   {value: 'probable', label: 'Puedo buscar la forma'},
   {value: 'si', label: 'Sí, totalmente!'},
 ];
@@ -63,20 +63,50 @@ export default function Survey() {
   const [inputError, setInputError] = useState(null);
   const [sending, setSending] = useState(false);
   const methods = useForm({mode: 'all'});
-  const {handleSubmit, setError, formState: {errors}, watch} = methods;
-
-  // console.log(watch());
-
+  const {
+    handleSubmit,
+    getValues,
+    setError,
+    formState: {errors},
+  } = methods;
   const router = useRouter();
 
   useEffect(() => {
     formSteps.map((fs) => setError(fs, {}));
   }, [setError]);
 
+  const handlePartialSubmit = async () => {
+    console.log('partial submit');
+    try {
+      setSending(true);
+      const dataSoFar = getValues();
+      const lead = getCookie('lead');
+      const _fbc = getCookie('_fbc');
+      const _fbp = getCookie('_fbp');
+      const { id, email, phone } = JSON.parse(lead || '{}');
+
+      const payload = { ...dataSoFar, id, email, phone,  _fbc, _fbp };
+
+      await fetch(info.surveyWebhook, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {'Content-Type': 'application/json'},
+      });
+
+      router.push('/notelegible');
+    } catch (e) {
+      console.error('Partial submit failed', e);
+    }
+  };
+
   const handleNext = () => {
     const formStepName = formSteps[formStep];
     if (errors[formStepName]) {
       setInputError(formStep);
+      return;
+    }
+    if (getValues('downPayment') === 'no') {
+      handlePartialSubmit();
       return;
     }
     setInputError(null);
@@ -178,7 +208,13 @@ export default function Survey() {
               </div>
 
               <div className={`my-20 ${formStep === 4 ? 'block' : 'hidden'}`}>
-                <p className="ft-4 font-semibold mb-6">Para apartar tu casa solo necesitas el 3% hoy mismo. ¿Cuentas con ese monto?</p>
+                <p className="ft-4 font-semibold mb-6">Para la compra de tu casa necesitas estos montos ¿cuentas con ellos?</p>
+                <p>
+                  <b>Apartado 3%:</b> Desde $8,000 USD<br/>
+                  <span className="-ft-1">Necesario al momento de firmar tu contrato</span><br/><br/>
+                  <b>Enganche 30%:</b> Desde $80,000 USD<br/>
+                  <span className="-ft-1">Este lo pagarás hasta que te entreguemos tu casa</span><br/><br/>
+                </p>
                 <Radio
                   name="downPayment"
                   inputOptions={{required: 'Selecciona una opción'}}
@@ -187,7 +223,6 @@ export default function Survey() {
                   optCols={3}
                   className={inputError === 4 ? '!border-brand-2' : undefined}
                 />
-                <p className="ft-1 mt-12"><b>Nota:</b> El 35% del enganche lo pagarías hasta que te entreguemos tu casa.</p>
               </div>
 
               <div className={`my-20 ${formStep === 5 ? 'block' : 'hidden'}`}>
@@ -232,7 +267,7 @@ export default function Survey() {
                   formStep === 6
                     ? 'Agendar cita'
                     : sending
-                      ? <><span className="material-symbols-outlined animate-spin mr-4">progress_activity</span><span>Abriendo Calendario</span></>
+                      ? <><span className="material-symbols-outlined animate-spin mr-4">progress_activity</span></>
                       : 'Siguiente'
                 }</button>
               </div>
